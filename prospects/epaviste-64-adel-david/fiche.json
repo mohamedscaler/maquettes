@@ -1,0 +1,38 @@
+{
+ "nom": "Adel David Épaviste 64",
+ "tel": "06 19 70 92 82",
+ "whatsapp": "06 19 70 92 82",
+ "email": "",
+ "couleur": "",
+ "logo": "https://www.epaviste-64.fr/skins/default/images/Logo-adel-david.png",
+ "zone_en": "dans les Pyrénées-Atlantiques",
+ "zone_nom": "Pays basque et Sud Landes",
+ "zone_phrase": "Bayonne, Biarritz, Saint-Jean-de-Luz, Capbreton et tout le 64.",
+ "departements": [
+  [
+   "64",
+   "Pyrénées-Atlantiques"
+  ],
+  [
+   "40",
+   "Landes"
+  ]
+ ],
+ "horaires": "Du lundi au samedi, 8h-18h",
+ "agrement": "",
+ "rachat": true,
+ "societe": "47 allée Marine, 64100 Bayonne",
+ "photos": [
+  "https://www.epaviste-64.fr/skins/default/images/p/epaviste-adel-david-1.webp",
+  "https://www.epaviste-64.fr/skins/default/images/p/epaviste-adel-david-2.webp",
+  "https://www.epaviste-64.fr/skins/default/images/p/epaviste-adel-david-3.webp",
+  "https://www.epaviste-64.fr/skins/default/images/p/epaviste-adel-david-4.webp",
+  "https://www.epaviste-64.fr/skins/default/images/p/epaviste-adel-david-5.webp",
+  "https://www.epaviste-64.fr/skins/default/images/p/cat-img-adel-david-enlevement-d-epave-64.webp",
+  "https://www.epaviste-64.fr/skins/default/images/p/cat-img-adel-david-remorquage-voiture-64.webp",
+  "https://www.epaviste-64.fr/skins/default/images/p/cat-img-adel-david-epaviste-de-voiture-64.webp",
+  "https://www.epaviste-64.fr/skins/default/images/p/cat-img-adel-david-depannage-automobile-64.webp"
+ ],
+ "site_actuel": "https://www.epaviste-64.fr/",
+ "source": "site actuel"
+}
