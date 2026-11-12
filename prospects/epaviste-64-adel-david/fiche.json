@@ -3,7 +3,7 @@
  "tel": "06 19 70 92 82",
  "whatsapp": "06 19 70 92 82",
  "email": "",
- "couleur": "",
+ "couleur": "#1f4fd1",
  "logo": "https://www.epaviste-64.fr/skins/default/images/Logo-adel-david.png",
  "zone_en": "dans les Pyrénées-Atlantiques",
  "zone_nom": "Pays basque et Sud Landes",
@@ -34,5 +34,6 @@
   "https://www.epaviste-64.fr/skins/default/images/p/cat-img-adel-david-depannage-automobile-64.webp"
  ],
  "site_actuel": "https://www.epaviste-64.fr/",
- "source": "site actuel"
+ "source": "site actuel",
+ "perk_delai": "Du lundi au samedi, 8h-18h"
 }
