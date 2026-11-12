@@ -162,8 +162,8 @@ def construire(fiche, logo, photos, visuel, t):
         "meta_desc": e(f"Enlèvement d'épave gratuit {zone_en}, {horaires}. " + (f"Centre VHU agréé n° {agr}. " if agr else "") + f"Tél. {tel}"),
         "favicon": f'<link rel="icon" href="{logo}">' if logo else "",
         "logo_nav": f'<img src="{logo}" alt="Logo {e(nom)}" style="height:60px;width:auto">' if logo else logo_texte(nom),
-        "logo_footer": (f'<div class="footer_logo"><img src="{logo}" alt="Logo {e(nom)}"></div>' if logo
-                        else f'<div class="footer_logo is-texte">{logo_texte(nom)}</div>'),
+        # Pas de logo image en pied de page (rendu trop lourd) : nom en texte
+        "logo_footer": f'<div class="footer_logo is-texte">{logo_texte(nom)}</div>',
         "hero_sous_titre": e(fiche.get("hero_sous_titre") or f"{fiche.get('zone_phrase') or 'Intervention rapide sur tout le secteur.'} On se déplace sous 24h."),
         "perk_delai": e(fiche.get("perk_delai") or f"Intervention rapide, {horaires}"),
         "zone_en": e(zone_en), "zone_nom": e(zone_nom),
