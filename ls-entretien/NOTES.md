@@ -13,9 +13,10 @@
 - Animations : entrée hero en cascade, halos + feuilles qui tombent, reflet + vibration du bouton appel, navbar collante, reveal en cascade, survols cartes
 - Repo : mohamedscaler/maquettes, dossier ls-entretien/ → relancer le workflow Maquettes à la main après chaque push (il ne se déclenche que sur prospects/)
 
+- Photos (34 reçues, bureau/photo jardin avant apres) : 5 comparateurs avant/après (muret, pavés, débroussaillage, dalle piscine, abattage palmier) + galerie 8 photos, en webp dans img/
+- Logo généré : img/logo.svg (fond sombre), logo-fond-clair.svg, logo-carre.svg/.png (fiche Google)
+
 ## À faire
-- [ ] Photos de chantiers → remplacer les blocs `.realisations_item`
-- [ ] Nouveau logo → remplacer le logo texte de la navbar
 - [ ] Adresse affichée ou masquée sur Google ?
 - [ ] Nb d'années d'expérience (optionnel)
 - [ ] Mentions légales (SIRET) avant mise en ligne

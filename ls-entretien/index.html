@@ -119,6 +119,42 @@ a{color:inherit;text-decoration:none}
 .realisations_item::after{content:"Photo à venir";position:absolute;top:1rem;left:1rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--or-clair);opacity:.8}
 .realisations_item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
+/* Comparateur avant / après */
+.ba_grid{display:grid;gap:1.2rem}
+@media (min-width:640px){.ba_grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:992px){.ba_grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.ba_frame{--pos:50%;position:relative;aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--vert);user-select:none;touch-action:pan-y}
+.ba_frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba_before{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.ba_handle{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;margin-left:-1.5px;background:var(--or);pointer-events:none}
+.ba_handle::after{content:"‹ ›";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:2.6rem;height:2.6rem;border-radius:50%;background:var(--or);color:var(--vert-nuit);font-weight:700;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.ba_range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba_label{position:absolute;top:.8rem;padding:.25rem .65rem;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(15,31,23,.75);color:var(--creme);pointer-events:none}
+.ba_label.is-avant{left:.8rem}.ba_label.is-apres{right:.8rem;background:var(--or);color:var(--vert-nuit)}
+.ba_component figcaption{margin-top:.7rem;font-weight:700}
+.ba_cta{background:var(--vert);color:var(--creme);border-radius:var(--radius);padding:2rem;display:flex;flex-direction:column;justify-content:center;gap:1rem;aspect-ratio:1}
+.ba_cta p{color:rgba(246,242,233,.75)}
+.ba_cta .button{align-self:flex-start}
+@media (max-width:639px){.ba_cta{aspect-ratio:auto}}
+
+/* Galerie */
+.galerie_title{margin:4rem 0 1.5rem}
+.galerie_grid{display:grid;gap:1rem;grid-template-columns:repeat(2,1fr)}
+@media (min-width:992px){.galerie_grid{grid-template-columns:repeat(4,1fr)}}
+.galerie_item{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:var(--vert)}
+.galerie_item img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.galerie_item:hover img{transform:scale(1.07)}
+.galerie_item figcaption{position:absolute;left:0;right:0;bottom:0;padding:2.5rem 1rem .9rem;background:linear-gradient(transparent,rgba(15,31,23,.85));color:var(--creme);font-weight:600;font-size:.9rem}
+
+/* Visuel du hero */
+.hero_visual{position:relative;max-width:26rem;justify-self:end;width:100%}
+.hero_visual img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:22px;border:1px solid rgba(246,242,233,.15)}
+.hero_float{position:absolute;left:-1.5rem;bottom:2rem;background:var(--creme);color:var(--vert-nuit);border-radius:14px;padding:.9rem 1.1rem;box-shadow:0 20px 40px -15px rgba(0,0,0,.6);display:grid;animation:float 5s ease-in-out infinite}
+.hero_float span{font-size:.85rem;color:var(--texte-doux)}
+@keyframes float{50%{transform:translateY(-8px)}}
+@media (max-width:991px){.hero_visual{justify-self:start}.hero_float{left:1rem}}
+.navbar_logo img{height:2.9rem;width:auto}
+
 /* ===== Atouts ===== */
 .atouts_grid{display:grid;gap:2rem}
 @media (min-width:768px){.atouts_grid{grid-template-columns:repeat(3,1fr)}}
@@ -242,7 +278,7 @@ textarea.form_input{min-height:7rem;resize:vertical}
 <header class="navbar_component">
   <div class="padding-global">
     <div class="container-large navbar_inner">
-      <a href="#" class="navbar_logo">LS <span>Entretien</span></a>
+      <a href="#" class="navbar_logo"><img src="img/logo.svg" alt="LS Entretien" width="166" height="46"></a>
       <a href="tel:+33610291412" class="navbar_link"><svg width="18" height="18"><use href="#i-phone"/></svg>06 10 29 14 12</a>
     </div>
   </div>
@@ -269,14 +305,9 @@ textarea.form_input{min-height:7rem;resize:vertical}
           <li><svg><use href="#i-check"/></svg>Basé à Narrosse (40)</li>
         </ul>
       </div>
-      <div class="hero_card hero-in" style="--d:.5s">
-        <p class="hero_card-title">Nos domaines d'intervention</p>
-        <ul class="hero_card-list">
-          <li><span class="hero_card-icon"><svg><use href="#i-leaf"/></svg></span><div><strong>Entretien du jardin</strong><span>Tonte, taille de haies, entretien régulier</span></div></li>
-          <li><span class="hero_card-icon"><svg><use href="#i-tree"/></svg></span><div><strong>Abattage &amp; taille d'arbres</strong><span>Arbres gênants, dangereux ou trop hauts</span></div></li>
-          <li><span class="hero_card-icon"><svg><use href="#i-house"/></svg></span><div><strong>Nettoyage de toiture</strong><span>Démoussage et remise au propre</span></div></li>
-          <li><span class="hero_card-icon"><svg><use href="#i-drop"/></svg></span><div><strong>Façades &amp; murets</strong><span>Nettoyage extérieur complet</span></div></li>
-        </ul>
+      <div class="hero_visual hero-in" style="--d:.5s">
+        <img src="img/hero.webp" alt="Élagage d'un palmier par LS Entretien" width="1000" height="1250" fetchpriority="high">
+        <a href="#realisations" class="hero_float"><strong>Avant / après</strong><span>Voir nos chantiers ↓</span></a>
       </div>
     </div>
   </div>
@@ -334,20 +365,84 @@ textarea.form_input{min-height:7rem;resize:vertical}
   </div>
 </section>
 
-<!-- ===== Réalisations (photos à remplacer) ===== -->
-<section class="section_realisations">
+<!-- ===== Réalisations : avant / après + galerie ===== -->
+<section class="section_realisations" id="realisations">
   <div class="padding-global padding-section-large">
     <div class="container-large">
       <div class="max-width-medium margin-bottom-large reveal">
         <span class="text-eyebrow margin-bottom-small">Réalisations</span>
         <h2 class="heading-style-h2">Avant / après sur nos chantiers</h2>
+        <p class="text-color-doux" style="margin-top:1rem">Faites glisser le curseur pour voir la différence.</p>
       </div>
-      <!-- Remplacer chaque bloc par : <div class="realisations_item"><img src="..." alt="..."></div> -->
-      <div class="realisations_grid">
-        <div class="realisations_item reveal">Taille de haies</div>
-        <div class="realisations_item reveal">Nettoyage de toiture</div>
-        <div class="realisations_item reveal">Façade</div>
-        <div class="realisations_item reveal">Aménagement</div>
+      <div class="ba_grid">
+        <!-- Comparateur : l'image "après" est en dessous, l'image "avant" est découpée par --pos -->
+        <figure class="ba_component reveal">
+          <div class="ba_frame">
+            <img src="img/muret-apres.webp" alt="Muret nettoyé" loading="lazy">
+            <img class="ba_before" src="img/muret-avant.webp" alt="Muret avant nettoyage" loading="lazy">
+            <span class="ba_label is-avant">Avant</span><span class="ba_label is-apres">Après</span>
+            <span class="ba_handle"></span>
+            <input class="ba_range" type="range" min="0" max="100" value="50" aria-label="Comparer avant et après">
+          </div>
+          <figcaption>Nettoyage de muret</figcaption>
+        </figure>
+        <figure class="ba_component reveal">
+          <div class="ba_frame">
+            <img src="img/paves-apres.webp" alt="Pavés nettoyés" loading="lazy">
+            <img class="ba_before" src="img/paves-avant.webp" alt="Pavés couverts de mousse" loading="lazy">
+            <span class="ba_label is-avant">Avant</span><span class="ba_label is-apres">Après</span>
+            <span class="ba_handle"></span>
+            <input class="ba_range" type="range" min="0" max="100" value="50" aria-label="Comparer avant et après">
+          </div>
+          <figcaption>Démoussage d'allée en pavés</figcaption>
+        </figure>
+        <figure class="ba_component reveal">
+          <div class="ba_frame">
+            <img src="img/debroussaillage-apres.webp" alt="Abri dégagé" loading="lazy">
+            <img class="ba_before" src="img/debroussaillage-avant.webp" alt="Abri envahi par la végétation" loading="lazy">
+            <span class="ba_label is-avant">Avant</span><span class="ba_label is-apres">Après</span>
+            <span class="ba_handle"></span>
+            <input class="ba_range" type="range" min="0" max="100" value="50" aria-label="Comparer avant et après">
+          </div>
+          <figcaption>Débroussaillage</figcaption>
+        </figure>
+        <figure class="ba_component reveal">
+          <div class="ba_frame">
+            <img src="img/amenagement-apres.webp" alt="Piscine installée sur dalle gravier" loading="lazy">
+            <img class="ba_before" src="img/amenagement-avant.webp" alt="Préparation de la dalle" loading="lazy">
+            <span class="ba_label is-avant">Avant</span><span class="ba_label is-apres">Après</span>
+            <span class="ba_handle"></span>
+            <input class="ba_range" type="range" min="0" max="100" value="50" aria-label="Comparer avant et après">
+          </div>
+          <figcaption>Aménagement : dalle pour piscine</figcaption>
+        </figure>
+        <figure class="ba_component reveal">
+          <div class="ba_frame">
+            <img src="img/abattage-apres.webp" alt="Palmier abattu, terrain dégagé" loading="lazy">
+            <img class="ba_before" src="img/abattage-avant.webp" alt="Palmier pendant l'abattage" loading="lazy">
+            <span class="ba_label is-avant">Avant</span><span class="ba_label is-apres">Après</span>
+            <span class="ba_handle"></span>
+            <input class="ba_range" type="range" min="0" max="100" value="50" aria-label="Comparer avant et après">
+          </div>
+          <figcaption>Abattage de palmier</figcaption>
+        </figure>
+        <div class="ba_cta reveal">
+          <h3 class="heading-style-h3">Votre extérieur est le prochain ?</h3>
+          <p>Expliquez votre besoin, on fixe un rendez-vous.</p>
+          <a href="tel:+33610291412" class="button"><svg><use href="#i-phone"/></svg>06 10 29 14 12</a>
+        </div>
+      </div>
+
+      <h3 class="heading-style-h3 galerie_title reveal">Sur le terrain</h3>
+      <div class="galerie_grid">
+        <figure class="galerie_item reveal"><img src="img/elagage-palmier.webp" alt="Élagage d'un palmier" loading="lazy"><figcaption>Élagage de palmier</figcaption></figure>
+        <figure class="galerie_item reveal"><img src="img/facade-nacelle.webp" alt="Nettoyage de façade en nacelle" loading="lazy"><figcaption>Façade en nacelle</figcaption></figure>
+        <figure class="galerie_item reveal"><img src="img/toiture.webp" alt="Démoussage de toiture" loading="lazy"><figcaption>Démoussage de toiture</figcaption></figure>
+        <figure class="galerie_item reveal"><img src="img/allee.webp" alt="Allée nettoyée" loading="lazy"><figcaption>Allée nettoyée</figcaption></figure>
+        <figure class="galerie_item reveal"><img src="img/taille-cypres.webp" alt="Taille de cyprès" loading="lazy"><figcaption>Taille de haie</figcaption></figure>
+        <figure class="galerie_item reveal"><img src="img/terrassement.webp" alt="Préparation de terrain" loading="lazy"><figcaption>Préparation de terrain</figcaption></figure>
+        <figure class="galerie_item reveal"><img src="img/facade-maison.webp" alt="Nettoyage de façade et de mur" loading="lazy"><figcaption>Façade et mur d'enceinte</figcaption></figure>
+        <figure class="galerie_item reveal"><img src="img/haie-route.webp" alt="Haie taillée en bord de route" loading="lazy"><figcaption>Haie en bord de route</figcaption></figure>
       </div>
     </div>
   </div>
@@ -453,7 +548,7 @@ document.getElementById('devis-form').addEventListener('submit', function(e){
 });
 
 // Apparition au scroll, en cascade dans chaque grille
-document.querySelectorAll('.services_grid,.realisations_grid,.atouts_grid').forEach(function(g){
+document.querySelectorAll('.services_grid,.ba_grid,.galerie_grid,.atouts_grid').forEach(function(g){
   Array.prototype.forEach.call(g.children, function(el,i){ el.style.setProperty('--delay', (i*0.09)+'s'); });
 });
 document.querySelectorAll('.zone_list li').forEach(function(li,i){ li.style.transitionDelay = (i*0.08)+'s'; });
@@ -461,6 +556,25 @@ var obs = new IntersectionObserver(function(entries){
   entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('is-visible'); obs.unobserve(en.target); } });
 },{threshold:.12});
 document.querySelectorAll('.reveal,.atouts_item').forEach(function(el){ obs.observe(el); });
+
+// Comparateurs avant / après : le curseur pilote --pos
+document.querySelectorAll('.ba_frame').forEach(function(f){
+  var r=f.querySelector('.ba_range');
+  r.addEventListener('input',function(){ f.style.setProperty('--pos', r.value+'%'); });
+});
+// Petit balayage automatique à l'apparition pour montrer que ça glisse
+var baObs=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(!e.isIntersecting) return; baObs.unobserve(e.target);
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var f=e.target, t0=null;
+    function step(t){ t0=t0||t; var k=Math.min((t-t0)/1800,1);
+      var v=50+30*Math.sin(k*Math.PI*2)*(1-k); f.style.setProperty('--pos',v+'%'); f.querySelector('.ba_range').value=v;
+      if(k<1) requestAnimationFrame(step); }
+    setTimeout(function(){ requestAnimationFrame(step); },500);
+  });
+},{threshold:.6});
+document.querySelectorAll('.ba_frame').forEach(function(f){ baObs.observe(f); });
 
 // Navbar collante après le hero
 var nav = document.querySelector('.navbar_component'), hero = document.querySelector('.section_hero');
