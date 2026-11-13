@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LS Entretien | Entretien de jardin, toiture et façade à Dax et Bayonne</title>
+<meta name="description" content="LS Entretien : entretien de jardin, taille de haies, abattage, tonte, aménagement, nettoyage de toitures, façades et murets. Intervention sur rendez-vous à Dax, Bayonne et alentours (40-64).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Données structurées pour Google (entreprise locale) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "LS Entretien",
+  "telephone": "+33610291412",
+  "email": "lsentretien040@gmail.com",
+  "address": {"@type": "PostalAddress", "addressLocality": "Narrosse", "postalCode": "40180", "addressCountry": "FR"},
+  "areaServed": ["Dax", "Bayonne", "Landes", "Pyrénées-Atlantiques"],
+  "description": "Entretien de parcs et jardins, abattage, taille, tonte, aménagement de jardin, nettoyage de toitures, façades et murets."
+}
+</script>
+
+<style>
+/* ===== Tokens ===== */
+:root{
+  --vert-nuit:#0f1f17;
+  --vert:#1d3a2b;
+  --vert-clair:#2f5a43;
+  --or:#c9a24b;
+  --or-clair:#e2c27a;
+  --creme:#f6f2e9;
+  --creme-2:#ece5d6;
+  --texte:#1a1f1c;
+  --texte-doux:#55605a;
+  --blanc:#ffffff;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Manrope",system-ui,sans-serif;color:var(--texte);background:var(--creme);line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* ===== Global (Client-First) ===== */
+.padding-global{padding-left:1rem;padding-right:1rem}
+@media (min-width:768px){.padding-global{padding-left:2.5rem;padding-right:2.5rem}}
+.container-large{max-width:72rem;margin:0 auto}
+.padding-section-large{padding-top:5rem;padding-bottom:5rem}
+@media (min-width:768px){.padding-section-large{padding-top:7rem;padding-bottom:7rem}}
+
+.heading-style-h1,.heading-style-h2,.heading-style-h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;line-height:1.1;letter-spacing:-.01em}
+.heading-style-h1{font-size:clamp(2.3rem,6vw,4.2rem)}
+.heading-style-h2{font-size:clamp(1.9rem,4vw,2.9rem)}
+.heading-style-h3{font-size:1.4rem}
+.text-size-large{font-size:1.125rem}
+.text-color-doux{color:var(--texte-doux)}
+.text-eyebrow{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--or)}
+.max-width-medium{max-width:38rem}
+.margin-bottom-small{margin-bottom:1rem}
+.margin-bottom-medium{margin-bottom:2rem}
+.margin-bottom-large{margin-bottom:3rem}
+
+.button{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.6rem;border-radius:999px;font-weight:700;font-size:1rem;background:var(--or);color:var(--vert-nuit);border:2px solid var(--or);transition:transform .2s,background .2s}
+.button:hover{transform:translateY(-2px);background:var(--or-clair);border-color:var(--or-clair)}
+.button.is-secondary{background:transparent;color:var(--creme);border-color:rgba(246,242,233,.35)}
+.button.is-secondary:hover{border-color:var(--creme);background:rgba(255,255,255,.06)}
+.button svg{width:1.15rem;height:1.15rem}
+
+/* ===== Navbar ===== */
+.navbar_component{position:absolute;top:0;left:0;right:0;z-index:10}
+.navbar_inner{display:flex;align-items:center;justify-content:space-between;height:5rem}
+.navbar_logo{font-family:"DM Serif Display",serif;font-size:1.5rem;color:var(--creme)}
+.navbar_logo span{color:var(--or)}
+.navbar_link{display:none;color:var(--creme);font-weight:600;gap:.5rem;align-items:center}
+@media (min-width:768px){.navbar_link{display:inline-flex}}
+
+/* ===== Hero ===== */
+.section_hero{position:relative;background:var(--vert-nuit);color:var(--creme);overflow:hidden}
+.section_hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60rem 30rem at 85% 10%,rgba(201,162,75,.18),transparent 60%),
+  radial-gradient(40rem 30rem at 0% 100%,rgba(47,90,67,.55),transparent 60%)}
+.hero_component{position:relative;display:grid;gap:3rem;padding-top:9rem;padding-bottom:5rem}
+@media (min-width:992px){.hero_component{grid-template-columns:1.15fr .85fr;align-items:center;padding-top:11rem;padding-bottom:7rem}}
+.hero_buttons{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.hero_badges{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:2.2rem;font-size:.92rem;color:rgba(246,242,233,.8)}
+.hero_badges li{list-style:none;display:flex;align-items:center;gap:.45rem}
+.hero_badges svg{width:1rem;height:1rem;color:var(--or)}
+.hero_card{background:rgba(255,255,255,.04);border:1px solid rgba(246,242,233,.12);border-radius:22px;padding:1.8rem}
+.hero_card-title{font-weight:700;margin-bottom:1rem;color:var(--or-clair)}
+.hero_card-list{list-style:none;display:grid;gap:.9rem}
+.hero_card-list li{display:flex;gap:.8rem;align-items:flex-start}
+.hero_card-icon{flex:none;width:2.4rem;height:2.4rem;border-radius:10px;background:rgba(201,162,75,.15);display:grid;place-items:center;color:var(--or)}
+.hero_card-icon svg{width:1.25rem;height:1.25rem}
+.hero_card-list strong{display:block}
+.hero_card-list span{font-size:.9rem;color:rgba(246,242,233,.7)}
+
+/* ===== Services ===== */
+.services_grid{display:grid;gap:1.2rem}
+@media (min-width:640px){.services_grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:992px){.services_grid{grid-template-columns:repeat(3,1fr)}}
+.services_card{background:var(--blanc);border-radius:var(--radius);padding:1.8rem;border:1px solid var(--creme-2);transition:transform .25s,box-shadow .25s}
+.services_card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -20px rgba(15,31,23,.35)}
+.services_icon{width:3rem;height:3rem;border-radius:12px;background:var(--vert);color:var(--or);display:grid;place-items:center;margin-bottom:1.2rem}
+.services_icon svg{width:1.5rem;height:1.5rem}
+.services_card p{color:var(--texte-doux);margin-top:.5rem}
+.services_tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.services_tags li{list-style:none;font-size:.8rem;font-weight:600;padding:.3rem .7rem;border-radius:999px;background:var(--creme);color:var(--vert)}
+.services_card.is-cta{background:var(--vert);color:var(--creme);border-color:var(--vert);display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem}
+.services_card.is-cta p{color:rgba(246,242,233,.75)}
+
+/* ===== Réalisations ===== */
+.section_realisations{background:var(--creme-2)}
+.realisations_grid{display:grid;gap:1rem;grid-template-columns:repeat(2,1fr)}
+@media (min-width:992px){.realisations_grid{grid-template-columns:repeat(4,1fr)}}
+.realisations_item{aspect-ratio:4/5;border-radius:var(--radius);background:linear-gradient(160deg,var(--vert-clair),var(--vert-nuit));display:flex;align-items:flex-end;padding:1rem;color:var(--creme);font-weight:600;font-size:.9rem;position:relative;overflow:hidden}
+.realisations_item::after{content:"Photo à venir";position:absolute;top:1rem;left:1rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--or-clair);opacity:.8}
+.realisations_item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ===== Atouts ===== */
+.atouts_grid{display:grid;gap:2rem}
+@media (min-width:768px){.atouts_grid{grid-template-columns:repeat(3,1fr)}}
+.atouts_item{border-top:2px solid var(--or);padding-top:1.4rem}
+.atouts_item p{color:var(--texte-doux);margin-top:.5rem}
+
+/* ===== Zone ===== */
+.section_zone{background:var(--vert);color:var(--creme)}
+.zone_component{display:grid;gap:2.5rem}
+@media (min-width:992px){.zone_component{grid-template-columns:1fr 1fr;align-items:center}}
+.zone_list{display:flex;flex-wrap:wrap;gap:.6rem}
+.zone_list li{list-style:none;padding:.55rem 1rem;border-radius:999px;border:1px solid rgba(246,242,233,.25);font-weight:600}
+.zone_list li.is-main{background:var(--or);color:var(--vert-nuit);border-color:var(--or)}
+.zone_text{color:rgba(246,242,233,.78)}
+
+/* ===== Contact ===== */
+.contact_component{display:grid;gap:2.5rem}
+@media (min-width:992px){.contact_component{grid-template-columns:.9fr 1.1fr}}
+.contact_infos{display:grid;gap:1rem;margin-top:2rem}
+.contact_info{display:flex;gap:1rem;align-items:center;padding:1.1rem 1.2rem;background:var(--blanc);border-radius:var(--radius);border:1px solid var(--creme-2);font-weight:600}
+.contact_info svg{width:1.3rem;height:1.3rem;color:var(--vert-clair);flex:none}
+.contact_info small{display:block;font-weight:500;color:var(--texte-doux)}
+.contact_form{background:var(--blanc);border-radius:22px;padding:2rem;border:1px solid var(--creme-2);display:grid;gap:1rem}
+.form_row{display:grid;gap:1rem}
+@media (min-width:640px){.form_row{grid-template-columns:1fr 1fr}}
+.form_field label{display:block;font-size:.85rem;font-weight:700;margin-bottom:.35rem}
+.form_input{width:100%;padding:.85rem 1rem;border-radius:10px;border:1px solid #d8d0bf;background:var(--creme);font:inherit;color:inherit}
+.form_input:focus{outline:2px solid var(--or);outline-offset:1px;border-color:transparent}
+textarea.form_input{min-height:7rem;resize:vertical}
+.contact_form .button{width:100%}
+.form_note{font-size:.8rem;color:var(--texte-doux);text-align:center}
+
+/* ===== Footer ===== */
+.footer_component{background:var(--vert-nuit);color:rgba(246,242,233,.7);padding:2.5rem 0 6rem;font-size:.9rem}
+@media (min-width:768px){.footer_component{padding-bottom:2.5rem}}
+.footer_inner{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
+
+/* ===== Barre d'appel mobile (fixe en bas) ===== */
+.mobile-cta{position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:20;display:flex;gap:.6rem}
+.mobile-cta .button{flex:1;padding:.9rem 1rem;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+.mobile-cta .button.is-secondary{background:var(--vert-nuit);border-color:var(--vert-nuit)}
+@media (min-width:768px){.mobile-cta{display:none}}
+
+/* Apparition au scroll */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.is-visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<!-- Icônes SVG réutilisables -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/></symbol>
+  <symbol id="i-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-7"/><path d="M12 15c-4 0-7-2.5-7-6a7 7 0 0 1 14 0c0 3.5-3 6-7 6z"/></symbol>
+  <symbol id="i-house" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7"/><path d="M5 9v12h14V9"/><path d="M9 21v-6h6v6"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6 6.3 6 11.3a6 6 0 0 1-12 0c0-5 6-11.3 6-11.3z"/></symbol>
+  <symbol id="i-shovel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 12 12"/><path d="m14 4 6 6-3 3a3 3 0 0 1-4 0l-2-2a3 3 0 0 1 0-4z"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></symbol>
+</svg>
+
+<!-- ===== Navbar ===== -->
+<header class="navbar_component">
+  <div class="padding-global">
+    <div class="container-large navbar_inner">
+      <a href="#" class="navbar_logo">LS <span>Entretien</span></a>
+      <a href="tel:+33610291412" class="navbar_link"><svg width="18" height="18"><use href="#i-phone"/></svg>06 10 29 14 12</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ===== Hero ===== -->
+<section class="section_hero">
+  <div class="padding-global">
+    <div class="container-large hero_component">
+      <div>
+        <span class="text-eyebrow margin-bottom-small">Landes &amp; Pays basque · 40-64</span>
+        <h1 class="heading-style-h1">Entretien de jardin, toiture et façade à Dax, Bayonne et alentours</h1>
+        <p class="text-size-large max-width-medium" style="margin-top:1.4rem;color:rgba(246,242,233,.8)">Tonte, taille de haies, abattage, aménagement, nettoyage de toitures et de façades. Un extérieur propre, un cadre de vie préservé.</p>
+        <div class="hero_buttons">
+          <a href="tel:+33610291412" class="button"><svg><use href="#i-phone"/></svg>Appeler maintenant</a>
+          <a href="#contact" class="button is-secondary">Demander un devis</a>
+        </div>
+        <ul class="hero_badges">
+          <li><svg><use href="#i-check"/></svg>Expérience de longue date</li>
+          <li><svg><use href="#i-check"/></svg>Intervention sur rendez-vous</li>
+          <li><svg><use href="#i-check"/></svg>Basé à Narrosse (40)</li>
+        </ul>
+      </div>
+      <div class="hero_card reveal">
+        <p class="hero_card-title">Nos domaines d'intervention</p>
+        <ul class="hero_card-list">
+          <li><span class="hero_card-icon"><svg><use href="#i-leaf"/></svg></span><div><strong>Entretien du jardin</strong><span>Tonte, taille de haies, entretien régulier</span></div></li>
+          <li><span class="hero_card-icon"><svg><use href="#i-tree"/></svg></span><div><strong>Abattage &amp; taille d'arbres</strong><span>Arbres gênants, dangereux ou trop hauts</span></div></li>
+          <li><span class="hero_card-icon"><svg><use href="#i-house"/></svg></span><div><strong>Nettoyage de toiture</strong><span>Démoussage et remise au propre</span></div></li>
+          <li><span class="hero_card-icon"><svg><use href="#i-drop"/></svg></span><div><strong>Façades &amp; murets</strong><span>Nettoyage extérieur complet</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Services ===== -->
+<section class="section_services" id="services">
+  <div class="padding-global padding-section-large">
+    <div class="container-large">
+      <div class="max-width-medium margin-bottom-large reveal">
+        <span class="text-eyebrow margin-bottom-small">Services</span>
+        <h2 class="heading-style-h2">Tout l'extérieur de votre maison, entre de bonnes mains</h2>
+      </div>
+      <div class="services_grid">
+        <div class="services_card reveal">
+          <div class="services_icon"><svg><use href="#i-leaf"/></svg></div>
+          <h3 class="heading-style-h3">Entretien de parcs et jardins</h3>
+          <p>Un jardin net toute l'année, sans y passer vos week-ends.</p>
+          <ul class="services_tags"><li>Tonte de pelouse</li><li>Taille de haies</li><li>Entretien régulier</li></ul>
+        </div>
+        <div class="services_card reveal">
+          <div class="services_icon"><svg><use href="#i-tree"/></svg></div>
+          <h3 class="heading-style-h3">Abattage &amp; taille</h3>
+          <p>Abattage et taille d'arbres pour sécuriser et dégager votre terrain.</p>
+          <ul class="services_tags"><li>Abattage</li><li>Taille d'arbres</li></ul>
+        </div>
+        <div class="services_card reveal">
+          <div class="services_icon"><svg><use href="#i-shovel"/></svg></div>
+          <h3 class="heading-style-h3">Aménagement de jardin</h3>
+          <p>Repenser votre extérieur pour en profiter pleinement.</p>
+          <ul class="services_tags"><li>Création</li><li>Réaménagement</li></ul>
+        </div>
+        <div class="services_card reveal">
+          <div class="services_icon"><svg><use href="#i-house"/></svg></div>
+          <h3 class="heading-style-h3">Nettoyage de toiture</h3>
+          <p>Une toiture propre qui protège mieux votre maison.</p>
+          <ul class="services_tags"><li>Toitures</li><li>Démoussage</li></ul>
+        </div>
+        <div class="services_card reveal">
+          <div class="services_icon"><svg><use href="#i-drop"/></svg></div>
+          <h3 class="heading-style-h3">Façades &amp; murets</h3>
+          <p>Redonnez de l'éclat à vos façades, murets et extérieurs.</p>
+          <ul class="services_tags"><li>Façades</li><li>Murets</li><li>Nettoyage extérieur</li></ul>
+        </div>
+        <div class="services_card is-cta reveal">
+          <div>
+            <div class="services_icon" style="background:var(--or);color:var(--vert-nuit)"><svg><use href="#i-tool"/></svg></div>
+            <h3 class="heading-style-h3">Petits travaux &amp; autres demandes</h3>
+            <p>Un besoin qui n'est pas dans la liste ? Appelez, on en parle.</p>
+          </div>
+          <a href="tel:+33610291412" class="button"><svg><use href="#i-phone"/></svg>06 10 29 14 12</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Réalisations (photos à remplacer) ===== -->
+<section class="section_realisations">
+  <div class="padding-global padding-section-large">
+    <div class="container-large">
+      <div class="max-width-medium margin-bottom-large reveal">
+        <span class="text-eyebrow margin-bottom-small">Réalisations</span>
+        <h2 class="heading-style-h2">Avant / après sur nos chantiers</h2>
+      </div>
+      <!-- Remplacer chaque bloc par : <div class="realisations_item"><img src="..." alt="..."></div> -->
+      <div class="realisations_grid">
+        <div class="realisations_item reveal">Taille de haies</div>
+        <div class="realisations_item reveal">Nettoyage de toiture</div>
+        <div class="realisations_item reveal">Façade</div>
+        <div class="realisations_item reveal">Aménagement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Atouts ===== -->
+<section class="section_atouts">
+  <div class="padding-global padding-section-large">
+    <div class="container-large">
+      <div class="max-width-medium margin-bottom-large reveal">
+        <span class="text-eyebrow margin-bottom-small">Pourquoi LS Entretien</span>
+        <h2 class="heading-style-h2">Un artisan du coin, qui connaît son métier</h2>
+      </div>
+      <div class="atouts_grid">
+        <div class="atouts_item reveal"><h3 class="heading-style-h3">Expérience</h3><p>Des années de pratique en entretien de jardins et nettoyage extérieur.</p></div>
+        <div class="atouts_item reveal"><h3 class="heading-style-h3">Sur rendez-vous</h3><p>On fixe ensemble un créneau qui vous arrange.</p></div>
+        <div class="atouts_item reveal"><h3 class="heading-style-h3">Local</h3><p>Basé à Narrosse, j'interviens dans les Landes et au Pays basque.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Zone ===== -->
+<section class="section_zone">
+  <div class="padding-global padding-section-large">
+    <div class="container-large zone_component">
+      <div class="reveal">
+        <span class="text-eyebrow margin-bottom-small">Zone d'intervention</span>
+        <h2 class="heading-style-h2 margin-bottom-small">Landes (40) et Pyrénées-Atlantiques (64)</h2>
+        <p class="zone_text">Dax, Bayonne et toutes les communes alentour. Vous n'êtes pas sûr d'être dans la zone ? Appelez, on vous répond tout de suite.</p>
+      </div>
+      <ul class="zone_list reveal">
+        <li class="is-main">Dax</li>
+        <li class="is-main">Bayonne</li>
+        <li>Narrosse</li>
+        <li>Landes (40)</li>
+        <li>Pyrénées-Atlantiques (64)</li>
+        <li>Et alentours</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="section_contact" id="contact">
+  <div class="padding-global padding-section-large">
+    <div class="container-large contact_component">
+      <div class="reveal">
+        <span class="text-eyebrow margin-bottom-small">Contact</span>
+        <h2 class="heading-style-h2">Parlons de votre extérieur</h2>
+        <p class="text-color-doux" style="margin-top:1rem">Décrivez votre besoin, je vous recontacte pour fixer un rendez-vous.</p>
+        <div class="contact_infos">
+          <a href="tel:+33610291412" class="contact_info"><svg><use href="#i-phone"/></svg><div><small>Téléphone</small>06 10 29 14 12</div></a>
+          <a href="mailto:lsentretien040@gmail.com" class="contact_info"><svg><use href="#i-mail"/></svg><div><small>E-mail</small>lsentretien040@gmail.com</div></a>
+          <div class="contact_info"><svg><use href="#i-cal"/></svg><div><small>Disponibilités</small>Sur rendez-vous</div></div>
+        </div>
+      </div>
+      <!-- Formulaire sans serveur : ouvre la messagerie avec le message pré-rempli -->
+      <form class="contact_form reveal" id="devis-form">
+        <div class="form_row">
+          <div class="form_field"><label for="nom">Nom</label><input class="form_input" id="nom" name="nom" required></div>
+          <div class="form_field"><label for="tel">Téléphone</label><input class="form_input" id="tel" name="tel" type="tel" required></div>
+        </div>
+        <div class="form_row">
+          <div class="form_field"><label for="ville">Ville</label><input class="form_input" id="ville" name="ville"></div>
+          <div class="form_field"><label for="service">Prestation</label>
+            <select class="form_input" id="service" name="service">
+              <option>Entretien de jardin</option><option>Taille de haies</option><option>Abattage / taille d'arbres</option><option>Aménagement de jardin</option><option>Nettoyage de toiture</option><option>Façade / murets</option><option>Autre</option>
+            </select>
+          </div>
+        </div>
+        <div class="form_field"><label for="message">Votre besoin</label><textarea class="form_input" id="message" name="message" placeholder="Surface, type de travaux, délai souhaité…"></textarea></div>
+        <button class="button" type="submit">Envoyer ma demande</button>
+        <p class="form_note">Ou appelez directement le 06 10 29 14 12</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer_component">
+  <div class="padding-global">
+    <div class="container-large footer_inner">
+      <span>© LS Entretien · Narrosse (40) · Zone 40-64</span>
+      <span>Entretien de jardin · Toiture · Façade</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Barre d'appel fixe sur mobile -->
+<div class="mobile-cta">
+  <a href="tel:+33610291412" class="button"><svg><use href="#i-phone"/></svg>Appeler</a>
+  <a href="#contact" class="button is-secondary">Devis</a>
+</div>
+
+<script>
+// Formulaire : construit un e-mail pré-rempli vers LS Entretien
+document.getElementById('devis-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  var f = this, v = function(n){ return f.elements[n].value.trim(); };
+  var corps = 'Nom : ' + v('nom') + '\nTéléphone : ' + v('tel') + '\nVille : ' + v('ville') + '\nPrestation : ' + v('service') + '\n\n' + v('message');
+  location.href = 'mailto:lsentretien040@gmail.com?subject=' + encodeURIComponent('Demande de devis - ' + v('service')) + '&body=' + encodeURIComponent(corps);
+});
+
+// Apparition des blocs au scroll
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('is-visible'); obs.unobserve(en.target); } });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+</script>
+</body>
+</html>
