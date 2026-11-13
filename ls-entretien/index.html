@@ -82,7 +82,7 @@ a{color:inherit;text-decoration:none}
 .section_hero::before{content:"";position:absolute;inset:0;background:
   radial-gradient(60rem 30rem at 85% 10%,rgba(201,162,75,.18),transparent 60%),
   radial-gradient(40rem 30rem at 0% 100%,rgba(47,90,67,.55),transparent 60%)}
-.hero_component{position:relative;display:grid;gap:3rem;padding-top:9rem;padding-bottom:5rem}
+.hero_component{position:relative;z-index:1;display:grid;gap:3rem;padding-top:9rem;padding-bottom:5rem}
 @media (min-width:992px){.hero_component{grid-template-columns:1.15fr .85fr;align-items:center;padding-top:11rem;padding-bottom:7rem}}
 .hero_buttons{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
 .hero_badges{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:2.2rem;font-size:.92rem;color:rgba(246,242,233,.8)}
@@ -162,10 +162,63 @@ textarea.form_input{min-height:7rem;resize:vertical}
 .mobile-cta .button.is-secondary{background:var(--vert-nuit);border-color:var(--vert-nuit)}
 @media (min-width:768px){.mobile-cta{display:none}}
 
-/* Apparition au scroll */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+/* ===== Animations ===== */
+/* Apparition au scroll (délai calculé en JS pour un effet cascade) */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--delay,0s)}
 .reveal.is-visible{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* Hero : entrée en cascade au chargement */
+.hero-in{opacity:0;transform:translateY(24px);animation:heroIn .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--d,0s)}
+@keyframes heroIn{to{opacity:1;transform:none}}
+
+/* Hero : halos lumineux qui dérivent lentement */
+.hero_glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+.hero_glow.is-or{width:34rem;height:34rem;right:-8rem;top:-10rem;background:rgba(201,162,75,.22);animation:drift 14s ease-in-out infinite alternate}
+.hero_glow.is-vert{width:30rem;height:30rem;left:-10rem;bottom:-12rem;background:rgba(47,90,67,.7);animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(-4rem,3rem) scale(1.15)}}
+
+/* Feuilles qui tombent dans le hero */
+.hero_leaf{position:absolute;top:-2rem;width:1.1rem;height:1.1rem;color:var(--or);opacity:.35;animation:fall linear infinite;pointer-events:none}
+@keyframes fall{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(110vh) translateX(6rem) rotate(540deg)}}
+
+/* Bouton principal : reflet qui balaie + icône téléphone qui vibre */
+.button{position:relative;overflow:hidden}
+.button:not(.is-secondary)::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 4.5s ease-in-out infinite}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+.button.is-ring svg{animation:ring 3s ease-in-out infinite;transform-origin:50% 50%}
+@keyframes ring{0%,80%,100%{transform:rotate(0)}84%{transform:rotate(-14deg)}88%{transform:rotate(12deg)}92%{transform:rotate(-8deg)}96%{transform:rotate(6deg)}}
+
+/* Navbar collante au scroll */
+.navbar_component{transition:background .35s,backdrop-filter .35s,box-shadow .35s}
+.navbar_component.is-scrolled{position:fixed;background:rgba(15,31,23,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 10px 30px -15px rgba(0,0,0,.6);animation:navDown .4s ease}
+.navbar_component.is-scrolled .navbar_inner{height:4rem}
+@keyframes navDown{from{transform:translateY(-100%)}to{transform:none}}
+
+/* Cartes services : trait doré + icône animée au survol */
+.services_card{position:relative;overflow:hidden}
+.services_card::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.services_card:hover::before{transform:scaleX(1)}
+.services_icon{transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.services_card:hover .services_icon{transform:rotate(-8deg) scale(1.12)}
+
+/* Atouts : la ligne dorée se dessine */
+.atouts_item{border-top:0;position:relative}
+.atouts_item::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.2,.7,.2,1) .2s}
+.atouts_item.is-visible::before{transform:scaleX(1)}
+
+/* Réalisations : zoom au survol */
+.realisations_item img{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.realisations_item:hover img{transform:scale(1.07)}
+
+/* Zone : pastilles qui apparaissent une par une */
+.zone_list li{opacity:0;transform:scale(.8);transition:opacity .5s,transform .5s cubic-bezier(.3,1.6,.5,1)}
+.zone_list.is-visible li{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.hero-in,.zone_list li{opacity:1;transform:none}
+  .atouts_item::before{transform:none}
+}
 </style>
 </head>
 <body>
@@ -198,23 +251,25 @@ textarea.form_input{min-height:7rem;resize:vertical}
 <main>
 <!-- ===== Hero ===== -->
 <section class="section_hero">
+  <span class="hero_glow is-or"></span><span class="hero_glow is-vert"></span>
+  <div id="leaves" aria-hidden="true"></div>
   <div class="padding-global">
     <div class="container-large hero_component">
       <div>
-        <span class="text-eyebrow margin-bottom-small">Landes &amp; Pays basque · 40-64</span>
-        <h1 class="heading-style-h1">Entretien de jardin, toiture et façade à Dax, Bayonne et alentours</h1>
-        <p class="text-size-large max-width-medium" style="margin-top:1.4rem;color:rgba(246,242,233,.8)">Tonte, taille de haies, abattage, aménagement, nettoyage de toitures et de façades. Un extérieur propre, un cadre de vie préservé.</p>
-        <div class="hero_buttons">
-          <a href="tel:+33610291412" class="button"><svg><use href="#i-phone"/></svg>Appeler maintenant</a>
+        <span class="text-eyebrow margin-bottom-small hero-in" style="--d:.1s">Landes &amp; Pays basque · 40-64</span>
+        <h1 class="heading-style-h1 hero-in" style="--d:.25s">Entretien de jardin, toiture et façade à Dax, Bayonne et alentours</h1>
+        <p class="text-size-large max-width-medium hero-in" style="--d:.45s;margin-top:1.4rem;color:rgba(246,242,233,.8)">Tonte, taille de haies, abattage, aménagement, nettoyage de toitures et de façades. Un extérieur propre, un cadre de vie préservé.</p>
+        <div class="hero_buttons hero-in" style="--d:.6s">
+          <a href="tel:+33610291412" class="button is-ring"><svg><use href="#i-phone"/></svg>Appeler maintenant</a>
           <a href="#contact" class="button is-secondary">Demander un devis</a>
         </div>
-        <ul class="hero_badges">
+        <ul class="hero_badges hero-in" style="--d:.75s">
           <li><svg><use href="#i-check"/></svg>Expérience de longue date</li>
           <li><svg><use href="#i-check"/></svg>Intervention sur rendez-vous</li>
           <li><svg><use href="#i-check"/></svg>Basé à Narrosse (40)</li>
         </ul>
       </div>
-      <div class="hero_card reveal">
+      <div class="hero_card hero-in" style="--d:.5s">
         <p class="hero_card-title">Nos domaines d'intervention</p>
         <ul class="hero_card-list">
           <li><span class="hero_card-icon"><svg><use href="#i-leaf"/></svg></span><div><strong>Entretien du jardin</strong><span>Tonte, taille de haies, entretien régulier</span></div></li>
@@ -397,11 +452,36 @@ document.getElementById('devis-form').addEventListener('submit', function(e){
   location.href = 'mailto:lsentretien040@gmail.com?subject=' + encodeURIComponent('Demande de devis - ' + v('service')) + '&body=' + encodeURIComponent(corps);
 });
 
-// Apparition des blocs au scroll
+// Apparition au scroll, en cascade dans chaque grille
+document.querySelectorAll('.services_grid,.realisations_grid,.atouts_grid').forEach(function(g){
+  Array.prototype.forEach.call(g.children, function(el,i){ el.style.setProperty('--delay', (i*0.09)+'s'); });
+});
+document.querySelectorAll('.zone_list li').forEach(function(li,i){ li.style.transitionDelay = (i*0.08)+'s'; });
 var obs = new IntersectionObserver(function(entries){
   entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('is-visible'); obs.unobserve(en.target); } });
 },{threshold:.12});
-document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+document.querySelectorAll('.reveal,.atouts_item').forEach(function(el){ obs.observe(el); });
+
+// Navbar collante après le hero
+var nav = document.querySelector('.navbar_component'), hero = document.querySelector('.section_hero');
+window.addEventListener('scroll', function(){
+  nav.classList.toggle('is-scrolled', window.scrollY > hero.offsetHeight * 0.6);
+}, {passive:true});
+
+// Feuilles qui tombent dans le hero (désactivé si l'utilisateur limite les animations)
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  var box = document.getElementById('leaves');
+  for(var i=0;i<9;i++){
+    var s = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    s.setAttribute('class','hero_leaf');
+    s.innerHTML = '<use href="#i-leaf"/>';
+    s.style.left = (Math.random()*100)+'%';
+    s.style.animationDuration = (12+Math.random()*10)+'s';
+    s.style.animationDelay = (-Math.random()*20)+'s';
+    s.style.transform = 'scale('+(.6+Math.random()*.8)+')';
+    box.appendChild(s);
+  }
+}
 </script>
 </body>
 </html>
