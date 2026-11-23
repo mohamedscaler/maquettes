@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Créatine monohydrate – JustAth (maquette)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+
+/* ===== Tokens (codes Mium Lab, couleurs JustAth) ===== */
+:root{
+  --green:#1F5132;      /* aplat signature (équivalent du bleu Mium) */
+  --green-l:#E3ECE2;    /* fond doux */
+  --deep:#173D26;       /* texte foncé sur fond doux */
+  --on:#FFFFFF;         /* texte posé sur l'aplat */
+  --yellow:#FFE927;     /* CTA promo */
+  --ink:#1D1111;        /* texte principal */
+  --muted:#5E5C58;
+  --grey:#F3F3F1;       /* fonds de sections / cartes */
+  --line:#E2E2DE;
+  --white:#FFFFFF;
+  --sans:"DM Sans",system-ui,sans-serif; --mono:"DM Mono",ui-monospace,monospace;
+  --max:1360px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 40px}
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:6px;border:0;font-weight:600;font-size:17px;transition:transform .15s ease,background .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-white{background:var(--white);color:var(--deep)}
+.btn-yellow{background:var(--yellow);color:var(--ink);font-family:var(--mono);text-transform:uppercase;font-size:15px;font-weight:500}
+.btn-dark{background:var(--ink);color:var(--white);font-family:var(--mono);text-transform:uppercase;font-size:14px;font-weight:500}
+
+/* Badge maquette */
+.mock-badge{position:fixed;left:16px;bottom:16px;z-index:60;background:var(--ink);color:#fff;padding:6px 6px 6px 16px;border-radius:999px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 24px rgba(0,0,0,.2);display:flex;align-items:center;gap:12px}
+/* Sélecteur de couleurs */
+.swatches{display:flex;gap:4px;padding-left:12px;border-left:1px solid #4A3F3F}
+.swatches button{width:32px;height:32px;border-radius:50%;border:2px solid transparent;background:var(--c);background-clip:padding-box;padding:0;position:relative;transition:transform .15s}
+.swatches button:hover{transform:scale(1.12)}
+.swatches button[aria-pressed="true"]{border-color:#fff;box-shadow:0 0 0 2px var(--c)}
+body,.announce,.marquee,.hero .block,.diag,.news,.statement,.ship,.loader{transition:background-color .4s ease,color .4s ease}
+
+/* ===== Annonce + header ===== */
+.announce{background:var(--green);color:var(--on);text-align:center;padding:10px 16px;font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+header{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:1px solid var(--line)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px;padding:0 40px;max-width:1512px;margin:0 auto}
+.nav-l,.nav-r{display:flex;align-items:center;gap:20px;font-weight:700;font-size:13.5px;text-transform:uppercase;letter-spacing:.01em}
+.nav-r{justify-content:flex-end}
+.nav a:hover{color:var(--green)}
+.logo{font-weight:800;font-size:28px;letter-spacing:-.04em;line-height:1;display:flex;align-items:center;gap:2px}
+.logo b{background:var(--ink);color:#fff;padding:2px 7px 4px;border-radius:6px;transform:rotate(-4deg);display:inline-block}
+.icons{display:flex;gap:2px}
+.icon-btn{width:44px;height:44px;border:0;background:transparent;display:grid;place-items:center;position:relative;border-radius:50%}
+.icon-btn:hover{background:var(--grey)}
+.icon-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7}
+.cart-count{position:absolute;top:5px;right:4px;min-width:18px;height:18px;border-radius:9px;background:var(--green);color:var(--on);font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 4px}
+
+/* ===== Hero split ===== */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:600px}
+.hero .photo{position:relative;overflow:hidden}
+.hero .photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.hero .block{background:var(--green);color:var(--on);display:flex;flex-direction:column;justify-content:center;padding:64px 80px;gap:20px}
+.hero .rating{display:flex;align-items:center;gap:10px;font-size:14px}
+.hero .rating .pill{background:rgba(255,255,255,.35);padding:4px 10px;border-radius:4px;font-family:var(--mono);font-size:12px;text-transform:uppercase}
+.hero h1{font-size:clamp(36px,3.6vw,56px)}
+.hero p{font-size:20px;margin:0;max-width:560px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.hero .btn-outline{background:transparent;color:var(--on);box-shadow:inset 0 0 0 2px var(--on)}
+
+/* ===== Réassurance ===== */
+.reassure{background:var(--grey)}
+.reassure .row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding:40px 40px;max-width:var(--max);margin:0 auto;text-align:center}
+.reassure svg{width:30px;height:30px;margin:0 auto 10px;stroke:var(--ink);fill:none;stroke-width:1.7}
+.reassure h3{font-size:17px;font-weight:500;text-transform:uppercase;letter-spacing:0}
+.reassure p{margin:4px 0 0;font-family:var(--mono);text-transform:uppercase;font-size:14px;color:var(--muted)}
+
+/* ===== Bandeau défilant ===== */
+.marquee{background:var(--green);color:var(--on);overflow:hidden}
+.marquee-track{display:flex;width:max-content;animation:scroll 36s linear infinite}
+.marquee-track span{display:flex;align-items:center;gap:12px;padding:14px 28px;font-weight:700;font-size:15px;text-transform:uppercase;white-space:nowrap}
+.marquee-track svg{width:22px;height:22px;stroke:var(--on);fill:none;stroke-width:2}
+@keyframes scroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+/* ===== Sections ===== */
+section{padding:88px 0}
+.title-c{text-align:center;max-width:780px;margin:0 auto 40px}
+.title-c h2{font-size:clamp(30px,3vw,44px)}
+.title-c p{color:var(--muted);font-size:18px;margin:12px 0 0}
+
+/* Onglets catégories (style Mium) */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.tabs button{min-height:36px;padding:0 12px;border-radius:4px;border:0;background:var(--grey);color:var(--muted);font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.tabs button[aria-pressed="true"]{background:var(--green);color:var(--on)}
+
+/* Cartes produits */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.card{display:flex;flex-direction:column;gap:12px}
+.card[hidden]{display:none}
+.card .media{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1/1;background:var(--grey)}
+.card .media img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.card:hover .media img{transform:scale(1.04)}
+.card .badge{position:absolute;top:12px;left:12px;background:var(--yellow);color:var(--ink);font-family:var(--mono);font-size:11px;text-transform:uppercase;padding:4px 8px;border-radius:3px}
+.card .badge.g{background:var(--green);color:var(--on)}
+.card .stars{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center}
+.card .stars span{color:var(--ink);letter-spacing:2px}
+.card h3{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+.card .claim{color:var(--muted);font-size:14px;margin:0;flex:1}
+.card .foot{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.card .price{font-weight:700;font-size:18px}
+.add{min-height:44px;padding:0 16px;border-radius:6px;border:0;background:var(--ink);color:#fff;font-family:var(--mono);font-size:13px;text-transform:uppercase}
+.add:hover{background:var(--green);color:var(--on)}
+.note{color:var(--muted);font-size:12.5px;margin-top:28px}
+
+/* Bloc manifeste centré */
+.statement{background:var(--green-l)}
+.statement .in{max-width:900px;margin:0 auto;text-align:center}
+.statement h2{font-size:clamp(34px,4vw,58px);color:var(--deep)}
+.statement p{font-size:19px;color:var(--deep);margin:18px auto 0;max-width:640px}
+
+/* Diagnostic */
+.diag{display:grid;grid-template-columns:1fr 1fr;border-radius:16px;overflow:hidden;background:var(--green)}
+.diag .left{padding:56px;color:var(--on);display:flex;flex-direction:column;gap:18px}
+.diag h2{font-size:clamp(30px,3vw,44px)}
+.diag .q{font-weight:600;font-size:18px;margin-top:8px}
+.diag .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.diag .opts button{min-height:56px;border-radius:8px;border:2px solid var(--on);background:transparent;color:var(--on);font-weight:600;font-size:16px;text-align:left;padding:0 16px}
+.diag .opts button[aria-pressed="true"]{background:var(--on);color:var(--green)}
+.diag .right{background:var(--white);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:16px;margin:16px;border-radius:12px}
+.diag .right .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.diag .right .duo img{border-radius:8px;aspect-ratio:1/1;object-fit:cover}
+.diag .right h3{font-size:24px}
+.diag .right p{margin:0;color:var(--muted)}
+.diag .right .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.diag .right .total{font-weight:700;font-size:22px}
+
+/* Routines */
+.routines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.routine{border-radius:12px;overflow:hidden;background:var(--grey);display:flex;flex-direction:column}
+.routine .duo{display:grid;grid-template-columns:1fr 1fr}
+.routine .duo img{aspect-ratio:1/1;object-fit:cover}
+.routine .txt{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.routine .lbl{font-family:var(--mono);font-size:12px;text-transform:uppercase;background:var(--green);color:var(--on);align-self:flex-start;padding:4px 8px;border-radius:3px}
+.routine h3{font-size:24px}
+.routine p{margin:0;color:var(--muted);flex:1}
+.routine .row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.routine .total{font-weight:700;font-size:20px}
+
+/* Transparence */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split img{border-radius:16px;width:100%;aspect-ratio:4/5;object-fit:cover}
+.split h2{font-size:clamp(30px,3vw,44px)}
+.split ul{list-style:none;padding:0;margin:28px 0 32px;display:grid;gap:18px}
+.split li{display:flex;gap:16px;align-items:flex-start}
+.split li .ic{flex:none;width:44px;height:44px;border-radius:50%;background:var(--green-l);display:grid;place-items:center}
+.split li .ic svg{width:22px;height:22px;stroke:var(--deep);fill:none;stroke-width:1.8}
+.split li b{display:block;font-size:17px}
+.split li span{color:var(--muted)}
+
+/* Avis (emplacement) */
+.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.review{background:var(--grey);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:12px;min-height:210px}
+.review .stars{letter-spacing:3px;font-size:18px}
+.review .line{height:10px;border-radius:5px;background:#E2E2DE}
+.review .who{margin-top:auto;font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted)}
+
+/* FAQ */
+.faq{max-width:900px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:24px;font-weight:700;font-size:19px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:26px;font-weight:400;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 22px;color:var(--muted);font-size:17px}
+
+/* Newsletter + footer */
+.news{background:var(--green);color:var(--on);border-radius:16px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.news h2{font-size:clamp(28px,3vw,40px)}
+.news p{margin:10px 0 0}
+.news form{display:flex;gap:8px;flex-wrap:wrap}
+.news label{position:absolute;left:-9999px}
+.news input{flex:1;min-width:220px;min-height:52px;border-radius:6px;border:0;padding:0 18px;font:inherit;color:var(--ink)}
+.news .ok{width:100%;font-family:var(--mono);font-size:13px;text-transform:uppercase;margin:4px 0 0}
+footer{background:var(--ink);color:#fff;margin-top:88px;padding:64px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.5fr repeat(3,minmax(0,1fr));gap:32px}
+footer .logo b{background:#fff;color:var(--ink)}
+footer p{color:#BDB9B5;font-size:15px;max-width:320px}
+footer h4{font-family:var(--mono);font-size:13px;text-transform:uppercase;font-weight:500;color:#BDB9B5;margin:0 0 16px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+footer a:hover{color:var(--green)}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:48px;padding-top:24px;border-top:1px solid #3A2F2F;color:#A9A4A0;font-size:13px}
+
+/* ===== Méga-menu ===== */
+.has-mega{position:static}
+.mega-btn{background:none;border:0;font-weight:700;font-size:13.5px;text-transform:uppercase;padding:0;min-height:44px;display:flex;align-items:center;gap:6px}
+.mega-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .2s}
+.mega-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.mega{position:absolute;left:0;right:0;top:100%;background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 20px 40px rgba(0,0,0,.08);display:none}
+.mega.open{display:block}
+.mega-in{max-width:var(--max);margin:0 auto;padding:32px 40px;display:grid;grid-template-columns:220px 1fr;gap:40px}
+.mega-cats{display:grid;gap:4px;align-content:start}
+.mega-cats a{padding:10px 12px;border-radius:6px;font-weight:600;text-transform:none;font-size:16px}
+.mega-cats a:hover{background:var(--grey);color:var(--ink)}
+.mega-cats .all{background:var(--green);color:var(--on);margin-top:8px}
+.mega-prods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.mega-prods a{display:grid;gap:8px;font-size:14px;font-weight:600;text-transform:none}
+.mega-prods img{border-radius:8px;aspect-ratio:1/1;object-fit:cover}
+.mega-prods span{color:var(--muted);font-weight:500}
+
+/* ===== Menu mobile ===== */
+.burger{display:none}
+.drawer{position:fixed;inset:0;z-index:80;display:none}
+.drawer.open{display:block}
+.drawer .scrim{position:absolute;inset:0;background:rgba(29,17,17,.45);border:0;width:100%}
+.drawer .panel{position:absolute;top:0;left:0;bottom:0;width:min(88vw,380px);background:var(--white);padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:6px}
+.drawer .panel .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.drawer .panel a{padding:14px 8px;border-bottom:1px solid var(--line);font-weight:700;text-transform:uppercase;font-size:15px}
+.drawer .panel .sub{padding-left:20px;text-transform:none;font-weight:500;color:var(--muted)}
+.drawer .panel .btn{margin-top:16px;border-bottom:0}
+
+/* ===== Quiz diagnostic (modale) ===== */
+.quiz{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:20px}
+.quiz.open{display:grid}
+.quiz .scrim{position:absolute;inset:0;background:rgba(29,17,17,.5);border:0;width:100%}
+.quiz .box{position:relative;background:var(--white);width:min(720px,100%);max-height:92vh;overflow-y:auto;border-radius:16px;padding:40px}
+.quiz .close{position:absolute;top:12px;right:12px}
+.quiz .bar{height:6px;border-radius:3px;background:var(--grey);margin:18px 0 28px;overflow:hidden}
+.quiz .bar i{display:block;height:100%;background:var(--green);transition:width .3s}
+.quiz h2{font-size:clamp(24px,3vw,34px);margin-bottom:20px}
+.quiz .choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quiz .choices button{min-height:64px;border-radius:10px;border:2px solid var(--line);background:var(--white);font-weight:600;font-size:16px;text-align:left;padding:12px 16px;transition:border-color .15s,background .15s}
+.quiz .choices button:hover{border-color:var(--green);background:var(--green-l)}
+.quiz .back{background:none;border:0;color:var(--muted);font-family:var(--mono);font-size:13px;text-transform:uppercase;margin-top:20px;min-height:44px;padding:0}
+.quiz .res-items{display:grid;gap:12px;margin:8px 0 20px}
+.quiz .res-item{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center;background:var(--grey);border-radius:10px;padding:10px}
+.quiz .res-item img{border-radius:8px;aspect-ratio:1/1;object-fit:cover}
+.quiz .res-item b{display:block}
+.quiz .res-item small{color:var(--muted)}
+.quiz .why{background:var(--green-l);color:var(--deep);border-radius:10px;padding:14px 16px;margin-bottom:20px}
+.quiz .res-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.quiz .res-foot .total{font-weight:700;font-size:24px}
+
+/* ===== Loader ===== */
+.loader{position:fixed;inset:0;z-index:200;background:var(--green);display:grid;place-items:center;transition:transform .7s cubic-bezier(.77,0,.18,1)}
+.loader.done{transform:translateY(-100%)}
+.loader .logo{font-size:56px;color:var(--on);animation:pop 1s ease both}
+.loader .logo b{background:var(--on);color:var(--green)}
+.loader .load-bar{position:absolute;bottom:0;left:0;height:4px;background:var(--on);animation:load 1.1s ease forwards}
+@keyframes pop{0%{opacity:0;transform:scale(.8) rotate(-4deg)}60%{opacity:1;transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes load{from{width:0}to{width:100%}}
+
+/* Barre de progression de lecture */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:70;background:var(--green);transform-origin:left;transform:scaleX(0)}
+
+/* Annonce rotative */
+.announce{position:relative;height:38px;overflow:hidden;padding:0}
+.announce span{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transform:translateY(100%);transition:opacity .5s,transform .5s}
+.announce span.on{opacity:1;transform:none}
+
+/* Apparition au scroll */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.hero .block > *{opacity:0;transform:translateY(20px);animation:up .8s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .block > *:nth-child(2){animation-delay:.1s}.hero .block > *:nth-child(3){animation-delay:.2s}.hero .block > *:nth-child(4){animation-delay:.3s}
+.hero .photo img{animation:zoom 1.6s ease both}
+body.loading .hero .block > *, body.loading .hero .photo img{animation-play-state:paused}
+@keyframes up{to{opacity:1;transform:none}}
+@keyframes zoom{from{transform:scale(1.12)}to{transform:scale(1)}}
+
+/* Skeleton images */
+.card .media,.routine .duo,.mega-prods a{background:linear-gradient(100deg,var(--grey) 30%,#ECECE8 50%,var(--grey) 70%);background-size:300% 100%;animation:shimmer 1.4s linear infinite}
+@keyframes shimmer{to{background-position:-150% 0}}
+img.lz{opacity:0;transition:opacity .6s ease}
+img.lz.ok{opacity:1}
+
+/* Fil d'Ariane */
+.crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.crumbs a:hover{color:var(--ink)}
+.crumbs [aria-current]{color:var(--ink)}
+.crumbs .sep{opacity:.5}
+
+/* Retour en haut */
+.totop{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;border:0;background:var(--ink);color:#fff;display:grid;place-items:center;opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;transition:opacity .3s,transform .3s}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:var(--deep)}
+.totop svg.ring{position:absolute;inset:0;width:56px;height:56px;transform:rotate(-90deg)}
+.totop svg.ring circle{fill:none;stroke:var(--green);stroke-width:3;stroke-dasharray:163.4;stroke-dashoffset:163.4;stroke-linecap:round}
+.totop svg.arrow{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.2}
+
+/* Panier latéral */
+.cart{position:fixed;inset:0;z-index:95;pointer-events:none}
+.cart .scrim{position:absolute;inset:0;width:100%;border:0;background:rgba(29,17,17,.45);opacity:0;transition:opacity .3s}
+.cart .panel{position:absolute;top:0;right:0;bottom:0;width:min(92vw,420px);background:var(--white);transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column}
+.cart.open{pointer-events:auto}
+.cart.open .scrim{opacity:1}
+.cart.open .panel{transform:none}
+.cart .head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.cart .head h2{font-size:22px}
+.ship{padding:16px 20px;background:var(--green-l);color:var(--deep);font-size:14.5px}
+.ship .track{height:8px;border-radius:4px;background:#fff;margin-top:10px;overflow:hidden}
+.ship .track i{display:block;height:100%;background:var(--green);border-radius:4px;transition:width .5s ease}
+.cart .items{flex:1;overflow-y:auto;padding:12px 20px;display:grid;gap:12px;align-content:start}
+.cart .empty{color:var(--muted);text-align:center;padding:48px 0}
+.ci{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center;animation:up .35s ease both}
+.ci img{border-radius:8px;aspect-ratio:1/1;object-fit:cover}
+.ci b{display:block;font-size:15px}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:6px;margin-top:6px}
+.qty button{width:36px;height:36px;border:0;background:none;font-size:18px}
+.qty span{min-width:24px;text-align:center;font-weight:600}
+.cart .foot{border-top:1px solid var(--line);padding:16px 20px;display:grid;gap:12px}
+.cart .foot .tot{display:flex;justify-content:space-between;font-weight:700;font-size:20px}
+.cart .foot .btn{width:100%}
+.cart .upsell{display:flex;gap:10px;align-items:center;background:var(--grey);border-radius:10px;padding:10px;font-size:14px}
+.cart .upsell img{width:52px;border-radius:6px}
+.cart .upsell button{margin-left:auto;min-height:36px;padding:0 12px;border-radius:6px;border:0;background:var(--ink);color:#fff;font-family:var(--mono);font-size:12px;text-transform:uppercase}
+.cart-count.bump{animation:bump .5s ease}
+@keyframes bump{40%{transform:scale(1.5)}}
+
+/* Animation vers le panier */
+.fly{position:fixed;z-index:120;width:64px;height:64px;border-radius:50%;object-fit:cover;pointer-events:none;box-shadow:0 8px 20px rgba(0,0,0,.25);transition:transform .75s cubic-bezier(.5,-.3,.6,1),opacity .75s}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:24px;z-index:110;transform:translate(-50%,140%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:10px;display:flex;align-items:center;gap:10px;font-size:15px;transition:transform .4s cubic-bezier(.2,.7,.2,1);box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.toast.show{transform:translate(-50%,0)}
+.toast i{width:22px;height:22px;border-radius:50%;background:var(--green);display:grid;place-items:center;font-style:normal;color:var(--on);font-size:13px;font-weight:700}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+
+/* ===== Scroll story : le pot qui s'ouvre ===== */
+.scrolly{height:280vh;background:var(--green);color:var(--on);position:relative}
+.scrolly .stage{position:sticky;top:64px;height:calc(100vh - 64px);min-height:560px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;align-items:center;max-width:var(--max);margin:0 auto;padding:0 40px;gap:40px}
+.scrolly .glow{position:absolute;left:50%;top:50%;width:70vmin;height:70vmin;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 65%);transform:translate(-10%,-50%) scale(var(--gs,.6));pointer-events:none}
+.steps{position:relative;height:260px}
+.step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:14px;opacity:0;transform:translateY(30px);transition:opacity .5s ease,transform .5s ease}
+.step.on{opacity:1;transform:none}
+.step .k{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.08em;opacity:.8}
+.step h2{font-size:clamp(40px,5.4vw,84px);font-weight:800;letter-spacing:-.03em;line-height:.95}
+.step p{font-size:19px;max-width:440px;margin:0;opacity:.9}
+.dots{display:flex;gap:8px;margin-top:24px}
+.dots i{width:28px;height:4px;border-radius:2px;background:currentColor;opacity:.25;transition:opacity .3s,width .3s}
+.dots i.on{opacity:1;width:48px}
+.jar-wrap{position:relative;height:100%;display:grid;place-items:center}
+.jar{width:min(360px,70%);overflow:visible;filter:drop-shadow(0 40px 50px rgba(0,0,0,.35));transform:translateY(var(--jy,0px)) rotate(var(--jr,0deg))}
+#lid{transform-box:fill-box;transform-origin:92% 100%}
+.particles{position:absolute;inset:0;pointer-events:none}
+.particles span{position:absolute;left:50%;top:50%;border-radius:50%;background:#fff;opacity:0;will-change:transform,opacity}
+.particles span.cap{border-radius:999px;background:linear-gradient(90deg,#fff 50%,var(--on) 50%)}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:8px;opacity:var(--ho,1)}
+.scroll-hint i{width:2px;height:28px;background:currentColor;animation:hint 1.6s ease-in-out infinite;transform-origin:top}
+@keyframes hint{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:900px){
+  .scrolly .stage{grid-template-columns:1fr;grid-template-rows:auto 1fr;padding:24px 20px;gap:0}
+  .steps{height:200px}
+  .step h2{font-size:40px}
+  .step p{font-size:16px}
+  .jar{width:min(240px,60%)}
+}
+
+/* ===== Responsive ===== */
+@media (max-width:1100px){
+  .nav-l > a,.nav-l .has-mega,.nav-r > a{display:none}
+  .burger{display:grid}
+  .hero,.diag,.split,.news{grid-template-columns:1fr}
+  .hero .photo{height:380px}
+  .hero .block{padding:48px 32px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .routines,.reviews{grid-template-columns:1fr}
+  .reassure .row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .wrap,.nav{padding:0 18px}
+  section{padding:64px 0}
+  .grid{gap:12px}
+  .card .foot{flex-direction:column;align-items:stretch}
+  .diag .left,.news{padding:32px 24px}
+  .diag .opts{grid-template-columns:1fr}
+  .reassure .row{padding:32px 18px}
+}
+
+/* ===== Fiche produit ===== */
+.pdp{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;padding:24px 0 88px;align-items:start}
+.gallery{position:sticky;top:88px;display:grid;grid-template-columns:84px 1fr;gap:14px}
+.thumbs{display:grid;gap:10px;align-content:start}
+.thumbs button{border:2px solid transparent;border-radius:10px;padding:0;overflow:hidden;background:var(--grey);aspect-ratio:1/1}
+.thumbs button[aria-pressed="true"]{border-color:var(--ink)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs .nut-thumb{display:grid;place-items:center;font-family:var(--mono);font-size:10px;text-transform:uppercase;color:var(--deep);background:var(--green-l)}
+.main-media{position:relative;border-radius:16px;overflow:hidden;background:var(--grey);aspect-ratio:4/5}
+.main-media img{width:100%;height:100%;object-fit:cover;transition:opacity .35s ease,transform .6s ease}
+.main-media:hover img{transform:scale(1.06)}
+.main-media .badge{position:absolute;top:16px;left:16px;background:var(--yellow);font-family:var(--mono);font-size:12px;text-transform:uppercase;padding:5px 10px;border-radius:4px}
+.nut-panel{position:absolute;inset:0;background:var(--green-l);color:var(--deep);padding:40px;display:none;flex-direction:column;justify-content:center;gap:16px}
+.nut-panel.on{display:flex}
+.nut-panel table{width:100%;border-collapse:collapse;font-size:16px}
+.nut-panel th,.nut-panel td{text-align:left;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.12)}
+.nut-panel td:last-child,.nut-panel th:last-child{text-align:right}
+
+.info .kicker{font-family:var(--mono);font-size:13px;text-transform:uppercase;color:var(--muted)}
+.info h1{font-size:clamp(32px,3.4vw,48px);margin:8px 0 12px}
+.info .sub{color:var(--muted);font-size:17px;margin:0 0 20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.chips span{background:var(--grey);padding:8px 12px;border-radius:6px;font-size:14px;font-weight:600}
+.buy{display:grid;gap:10px;margin-bottom:18px}
+.opt{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;border:2px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;transition:border-color .2s,background .2s}
+.opt:has(input:checked){border-color:var(--green);background:var(--green-l)}
+.opt input{width:20px;height:20px;accent-color:var(--green)}
+.opt b{display:block;font-size:16px}
+.opt small{color:var(--muted)}
+.opt .pr{font-weight:700;font-size:20px;text-align:right}
+.opt .pr s{display:block;font-weight:400;font-size:14px;color:var(--muted)}
+.opt .save{background:var(--green);color:var(--on);font-family:var(--mono);font-size:11px;text-transform:uppercase;padding:3px 7px;border-radius:3px;margin-left:6px;vertical-align:middle}
+.cta-row{display:flex;gap:10px;margin:18px 0 12px}
+.qty-big{display:flex;align-items:center;border:2px solid var(--line);border-radius:8px}
+.qty-big button{width:48px;height:52px;border:0;background:none;font-size:22px}
+.qty-big span{min-width:28px;text-align:center;font-weight:700;font-size:17px}
+.cta-row .btn{flex:1;min-height:56px;font-size:15px}
+.mini-ship{font-size:14px;color:var(--deep);background:var(--green-l);border-radius:8px;padding:12px 14px}
+.mini-ship .track{height:6px;border-radius:3px;background:#fff;margin-top:8px;overflow:hidden}
+.mini-ship .track i{display:block;height:100%;background:var(--green);transition:width .4s}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0 28px;text-align:center;font-size:13px;color:var(--muted)}
+.trust svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.7;margin:0 auto 6px;display:block}
+.acc details{border-top:1px solid var(--line)}
+.acc details:last-child{border-bottom:1px solid var(--line)}
+.acc summary{list-style:none;cursor:pointer;padding:18px 0;font-weight:700;font-size:17px;display:flex;justify-content:space-between}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";font-size:22px;font-weight:400;transition:transform .2s}
+.acc details[open] summary::after{transform:rotate(45deg)}
+.acc .in{padding:0 0 20px;color:var(--muted)}
+.acc .in p{margin:0 0 10px}
+.acc table{width:100%;border-collapse:collapse;font-size:15px;color:var(--ink)}
+.acc th,.acc td{text-align:left;padding:10px 0;border-bottom:1px solid var(--line)}
+.acc td:last-child,.acc th:last-child{text-align:right}
+.claim-note{font-size:12.5px;color:var(--muted);margin-top:16px}
+
+/* Souvent achetés ensemble */
+.fbt{background:var(--grey);border-radius:16px;padding:40px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
+.fbt-items{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.fbt-item{width:150px;display:grid;gap:8px;font-size:14px;font-weight:600;transition:opacity .25s}
+.fbt-item.off{opacity:.35}
+.fbt-item img{border-radius:10px;aspect-ratio:1/1;object-fit:cover}
+.fbt-plus{font-size:26px;color:var(--muted)}
+.fbt-list{display:grid;gap:10px}
+.fbt-list label{display:flex;gap:10px;align-items:center;font-size:15px;min-height:32px}
+.fbt-list input{width:18px;height:18px;accent-color:var(--green)}
+.fbt-list .p{margin-left:auto;font-weight:700}
+.fbt-total{display:flex;justify-content:space-between;align-items:baseline;margin:16px 0;font-size:16px}
+.fbt-total b{font-size:26px}
+
+/* Carrousel "Tu aimeras aussi" */
+.rail-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px;gap:16px}
+.rail-head h2{font-size:clamp(28px,3vw,40px)}
+.rail-nav{display:flex;gap:8px}
+.rail-nav button{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:20px}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 60px)/4);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.rail::-webkit-scrollbar{display:none}
+.rail .card{scroll-snap-align:start}
+
+/* Barre d'achat collante */
+.sticky-buy{position:fixed;left:0;right:0;bottom:0;z-index:55;background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.sticky-buy.show{transform:none}
+.sticky-buy .in{max-width:var(--max);margin:0 auto;padding:12px 40px;display:flex;align-items:center;gap:16px}
+.sticky-buy img{width:52px;height:52px;border-radius:8px;object-fit:cover}
+.sticky-buy b{display:block}
+.sticky-buy small{color:var(--muted)}
+.sticky-buy .btn{margin-left:auto}
+body.has-sticky .totop{bottom:96px}
+body.has-sticky .mock-badge{bottom:96px}
+
+@media (max-width:1000px){
+  .pdp{grid-template-columns:1fr;gap:28px}
+  .gallery{position:static;grid-template-columns:1fr}
+  .thumbs{grid-auto-flow:column;grid-template-columns:repeat(3,72px);order:2}
+  .fbt{grid-template-columns:1fr;padding:24px}
+  .rail{grid-auto-columns:70%}
+  .sticky-buy .in{padding:10px 18px}
+  .sticky-buy .txt{display:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="mock-badge"><span>Maquette · Charika Web</span>
+  <div class="swatches" role="group" aria-label="Changer la couleur du site">
+    <button style="--c:#1F5132" aria-label="Vert forêt" aria-pressed="true" data-pal="foret"></button>
+    <button style="--c:linear-gradient(135deg,#141414 50%,#E8C877 50%)" aria-label="Noir et or" aria-pressed="false" data-pal="noir"></button>
+    <button style="--c:#C8102E" aria-label="Rouge performance" aria-pressed="false" data-pal="rouge"></button>
+  </div>
+</div>
+<div class="announce" aria-live="off">
+  <span class="on">Livraison offerte dès 60 € d'achat</span>
+  <span>Fais ton diagnostic : ta routine en 30 secondes</span>
+  <span>Paiement 100 % sécurisé</span>
+</div>
+<header>
+<divclass="nav">
+<navclass="nav-l"aria-label="Navigationprincipale">
+<buttonclass="icon-btnburger"aria-label="Ouvrirlemenu"aria-controls="drawer"aria-expanded="false"id="burger"><svgviewBox="002424"aria-hidden="true"><pathd="M47h16M412h16M417h16"/></svg></button>
+<divclass="has-mega">
+<buttonclass="mega-btn"id="megaBtn"aria-expanded="false"aria-controls="mega">Nosproduits<svgviewBox="002424"aria-hidden="true"><pathd="m69666-6"/></svg></button>
+</div>
+<ahref="index.html#routines">Routines</a>
+<ahref="index.html#diagnostic">Packs</a>
+</nav>
+<ahref="index.html"class="logo"aria-label="JustAth,accueil">just<b>ath</b></a>
+<divclass="nav-r">
+<ahref="index.html#diagnostic">Diagnostic</a>
+<ahref="index.html#marque">Lamarque</a>
+<divclass="icons">
+<buttonclass="icon-btn"aria-label="Rechercher"><svgviewBox="002424"aria-hidden="true"><circlecx="11"cy="11"r="7"/><pathd="m2020-3.5-3.5"/></svg></button>
+<buttonclass="icon-btn"aria-label="Moncompte"><svgviewBox="002424"aria-hidden="true"><circlecx="12"cy="8"r="4"/><pathd="M421c1.5-44.5-68-6s6.5286"/></svg></button>
+<buttonclass="icon-btn"aria-label="Ouvrirlepanier"id="cartBtn"><svgviewBox="002424"aria-hidden="true"><pathd="M58h14l-1.212H6.2z"/><pathd="M98a3300160"/></svg><spanclass="cart-count"id="cartCount">0</span></button>
+</div>
+</div>
+</div>
+<!--Méga-menu"Nosproduits"-->
+<divclass="mega"id="mega">
+<divclass="mega-in">
+<divclass="mega-cats">
+<ahref="index.html#produits"data-cat="perf">Performance</a>
+<ahref="index.html#produits"data-cat="hydra">Hydratation</a>
+<ahref="index.html#produits"data-cat="sante">Bien-être</a>
+<ahref="index.html#produits"data-cat="beaute">Beauté</a>
+<ahref="index.html#routines">Routines</a>
+<ahref="index.html#produits"class="all">Voirtouslesproduits→</a>
+</div>
+<divclass="mega-prods">
+<ahref="index.html#produits"><imgsrc="img/creatine.webp"alt="">Créatinemonohydrate<span>44,99€</span></a>
+<ahref="index.html#produits"><imgsrc="img/preworkout.webp"alt="">Pré-workout<span>41,99€</span></a>
+<ahref="index.html#produits"><imgsrc="img/electrolytes.webp"alt="">Électrolytespêche<span>23,99€</span></a>
+<ahref="index.html#produits"><imgsrc="img/magzinc.webp"alt="">MagnésiumZincTribulus<span>29,99€</span></a>
+</div>
+</div>
+</div>
+</header>
+<!--Menumobile-->
+<divclass="drawer"id="drawer"aria-hidden="true">
+<buttonclass="scrim"aria-label="Fermerlemenu"data-close-drawer></button>
+<navclass="panel"aria-label="Menumobile">
+<divclass="top"><spanclass="logo">just<b>ath</b></span><buttonclass="icon-btn"aria-label="Fermerlemenu"data-close-drawer><svgviewBox="002424"aria-hidden="true"><pathd="M66l1212M186618"/></svg></button></div>
+<ahref="index.html#produits">Nosproduits</a>
+<ahref="index.html#produits"class="sub"data-cat="perf">Performance</a>
+<ahref="index.html#produits"class="sub"data-cat="hydra">Hydratation</a>
+<ahref="index.html#produits"class="sub"data-cat="sante">Bien-être</a>
+<ahref="index.html#produits"class="sub"data-cat="beaute">Beauté</a>
+<ahref="index.html#routines">Routines</a>
+<ahref="index.html#marque">Lamarque</a>
+<ahref="index.html#diagnostic"class="btnbtn-yellow">Fairelediagnostic</a>
+</nav>
+</div>
+
+<main class="wrap" id="top">
+  <nav class="crumbs" aria-label="Fil d'Ariane" style="margin-top:24px"><a href="index.html">Accueil</a><span class="sep" aria-hidden="true">/</span><a href="index.html#produits">Performance</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">Créatine monohydrate</span></nav>
+
+  <div class="pdp">
+    <!-- Galerie -->
+    <div class="gallery">
+      <div class="thumbs" role="group" aria-label="Photos du produit">
+        <button aria-pressed="true" data-src="img/creatine.webp" aria-label="Photo du pot"><img src="img/creatine.webp" alt=""></button>
+        <button aria-pressed="false" data-src="img/lifestyle.webp" aria-label="Photo d'ambiance"><img src="img/lifestyle.webp" alt=""></button>
+        <button aria-pressed="false" data-nut aria-label="Valeurs nutritionnelles"><span class="nut-thumb">Valeurs<br>nutri.</span></button>
+      </div>
+      <div class="main-media">
+        <img id="mainImg" src="img/creatine.webp" alt="Pot de créatine monohydrate 500 g">
+        <span class="badge">Best-seller</span>
+        <div class="nut-panel" id="nutPanel">
+          <span class="mono" style="font-size:13px">Pour 1 dose de 3 g</span>
+          <h2 style="font-size:32px">Valeurs nutritionnelles</h2>
+          <table><tr><th>Ingrédient</th><th>Par dose</th></tr><tr><td>Créatine monohydrate</td><td>3 000 mg</td></tr><tr><td>dont créatine</td><td>2 973 mg</td></tr></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infos + achat -->
+    <div class="info">
+      <span class="kicker">Performance · Poudre 500 g</span>
+      <h1>Créatine monohydrate</h1>
+      <p class="sub">La créatine augmente la performance physique lors d'exercices brefs et intenses*. Une seule ligne d'ingrédients, rien d'autre.</p>
+      <div class="chips"><span>3 g / jour</span><span>166 doses</span><span>Sans sucre</span><span>Sans arôme</span><span>Sans OGM</span></div>
+
+      <div class="buy" role="radiogroup" aria-label="Mode d'achat">
+        <label class="opt"><input type="radio" name="mode" value="once" checked><div><b>Achat unique</b><small>Livré une fois</small></div><div class="pr">44,99 €</div></label>
+        <label class="opt"><input type="radio" name="mode" value="sub"><div><b>Abonnement <span class="save">−10 %</span></b><small>Livré tous les 2 mois · sans engagement, annulable à tout moment</small></div><div class="pr"><s>44,99 €</s>40,49 €</div></label>
+      </div>
+
+      <div class="cta-row">
+        <div class="qty-big"><button aria-label="Diminuer la quantité" id="qMinus">−</button><span id="qVal">1</span><button aria-label="Augmenter la quantité" id="qPlus">+</button></div>
+        <button class="btn btn-dark" id="buyBtn">Ajouter au panier · <span id="buyPrice">44,99 €</span></button>
+      </div>
+      <div class="mini-ship" id="miniShip"></div>
+
+      <div class="trust">
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>Livraison offerte dès 60 €</div>
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>Paiement sécurisé</div>
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>Retours [à préciser]</div>
+      </div>
+
+      <div class="acc">
+        <details open><summary>L'essentiel</summary><div class="in"><p>Créatine monohydrate en poudre, en pot de 500 g, à mélanger à ta boisson.</p><p>3 000 mg de créatine monohydrate par dose, dont 2 973 mg de créatine pure. 166 portions par pot.</p></div></details>
+        <details><summary>Composition</summary><div class="in"><table><tr><th>Ingrédient</th><th>Pour 3 g</th></tr><tr><td>Créatine monohydrate</td><td>3 000 mg</td></tr><tr><td>dont créatine</td><td>2 973 mg</td></tr></table></div></details>
+        <details><summary>Utilisation</summary><div class="in"><p>Une fois par jour, mélanger 3 g (un tiers d'une cuillère doseuse de 10 ml) dans de l'eau, du jus ou un shake protéiné.</p></div></details>
+        <details><summary>Précautions et conservation</summary><div class="in"><p>Réservé aux adultes. Déconseillé aux femmes enceintes ou allaitantes. Ne pas dépasser la dose quotidienne recommandée. Tenir hors de portée des jeunes enfants. Ne remplace pas une alimentation variée et équilibrée ni un mode de vie sain. Conserver dans le contenant d'origine, au frais et au sec, à l'abri du soleil.</p></div></details>
+      </div>
+      <p class="claim-note">*L'effet bénéfique est obtenu par la consommation journalière de 3 g de créatine.</p>
+    </div>
+  </div>
+
+  <!-- Souvent achetés ensemble -->
+  <section style="padding-top:0">
+    <div class="fbt">
+      <div>
+        <span class="mono" style="font-size:13px;color:var(--muted)">La routine Performance</span>
+        <h2 style="font-size:clamp(26px,2.8vw,38px);margin:8px 0 24px">Souvent achetés ensemble</h2>
+        <div class="fbt-items">
+          <div class="fbt-item" data-fbt="creatine"><img src="img/creatine.webp" alt="">Créatine</div>
+          <span class="fbt-plus" aria-hidden="true">+</span>
+          <div class="fbt-item" data-fbt="preworkout"><img src="img/preworkout.webp" alt="">Pré-workout</div>
+          <span class="fbt-plus" aria-hidden="true">+</span>
+          <div class="fbt-item" data-fbt="electrolytes"><img src="img/electrolytes.webp" alt="">Électrolytes</div>
+        </div>
+      </div>
+      <div>
+        <div class="fbt-list">
+          <label><input type="checkbox" value="creatine" checked> Créatine monohydrate <span class="p">44,99 €</span></label>
+          <label><input type="checkbox" value="preworkout" checked> Pré-workout <span class="p">41,99 €</span></label>
+          <label><input type="checkbox" value="electrolytes" checked> Électrolytes pêche <span class="p">23,99 €</span></label>
+        </div>
+        <div class="fbt-total"><span>Total de la sélection</span><b id="fbtTotal">110,97 €</b></div>
+        <button class="btn btn-yellow" id="fbtAdd" style="width:100%">Ajouter la sélection</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tu aimeras aussi -->
+  <section style="padding-top:0">
+    <div class="rail-head"><h2>Tu aimeras aussi</h2><div class="rail-nav"><button aria-label="Produits précédents" id="railPrev">←</button><button aria-label="Produits suivants" id="railNext">→</button></div></div>
+    <div class="rail" id="rail"></div>
+  </section>
+
+  <!-- Avis -->
+  <section style="padding-top:0">
+    <div class="title-c"><h2>Avis sur ce produit</h2><p>Emplacement réservé aux avis clients vérifiés, collectés automatiquement après chaque commande.</p></div>
+    <div class="reviews">
+      <div class="review"><span class="stars" aria-hidden="true">★★★★★</span><div class="line" style="width:90%"></div><div class="line" style="width:70%"></div><span class="who">Avis vérifié</span></div>
+      <div class="review"><span class="stars" aria-hidden="true">★★★★★</span><div class="line" style="width:84%"></div><div class="line" style="width:60%"></div><span class="who">Avis vérifié</span></div>
+      <div class="review"><span class="stars" aria-hidden="true">★★★★★</span><div class="line" style="width:94%"></div><div class="line" style="width:66%"></div><span class="who">Avis vérifié</span></div>
+    </div>
+  </section>
+</main>
+
+<!-- Barre d'achat collante -->
+<div class="sticky-buy" id="stickyBuy">
+  <div class="in"><img src="img/creatine.webp" alt=""><div class="txt"><b>Créatine monohydrate</b><small>500 g · 166 doses</small></div><button class="btn btn-dark" id="stickyBtn">Ajouter · <span id="stickyPrice">44,99 €</span></button></div>
+</div>
+
+<!-- Retour en haut -->
+<button class="totop" id="totop" aria-label="Remonter en haut de la page"><svg class="ring" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" id="ring"/></svg><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status"><i>✓</i><span id="toastTxt">Ajouté au panier</span></div>
+
+<!-- Panier latéral -->
+<div class="cart" id="cart" aria-hidden="true">
+  <button class="scrim" aria-label="Fermer le panier" data-close-cart></button>
+  <aside class="panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <div class="head"><h2 id="cartTitle">Ton panier</h2><button class="icon-btn" aria-label="Fermer le panier" data-close-cart><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="ship" id="ship"></div>
+    <div class="items" id="cartItems"></div>
+    <div class="foot">
+      <div id="upsell"></div>
+      <div class="tot"><span>Total</span><span id="cartTotal">0,00 €</span></div>
+      <button class="btn btn-yellow" id="checkout">Passer commande</button>
+    </div>
+  </aside>
+</div>
+<footer>
+<divclass="wrap">
+<divclass="foot-grid">
+<div><ahref="index.html"class="logo">just<b>ath</b></a><p>Nutritionsportivepourceuxquivisentleprochainniveau.</p></div>
+<div><h4>Boutique</h4><ul><li><ahref="index.html#produits">Performance</a></li><li><ahref="index.html#produits">Hydratation</a></li><li><ahref="index.html#produits">Bien-être</a></li><li><ahref="index.html#produits">Beauté</a></li></ul></div>
+<div><h4>Aide</h4><ul><li><ahref="index.html">Contact</a></li><li><ahref="index.html">FAQ</a></li><li><ahref="index.html">Livraison</a></li><li><ahref="index.html">Retours</a></li></ul></div>
+<div><h4>Légal</h4><ul><li><ahref="index.html">Mentionslégales</a></li><li><ahref="index.html">CGV</a></li><li><ahref="index.html">Confidentialité</a></li><li><ahref="index.html">Cookies</a></li></ul></div>
+</div>
+<divclass="legal"><span>©2026JustAth</span><span>Lescomplémentsalimentairesnesesubstituentpasàunealimentationvariéeetéquilibréeetàunmodedeviesain.</span></div>
+</div>
+</footer>
+
+<script>
+// ===== Données produits =====
+const P={
+ creatine:{n:'Créatine monohydrate',d:'3 g par jour',p:44.99},
+ preworkout:{n:'Pré-workout',d:'Avant les séances intenses',p:41.99},
+ electrolytes:{n:'Électrolytes pêche',d:'Pendant l\'effort',p:23.99},
+ magzinc:{n:'Magnésium Zinc Tribulus',d:'Le soir, après la séance',p:29.99},
+ ashwa:{n:'Ashwagandha KSM-66®',d:'Au quotidien',p:24.99},
+ vitc:{n:'Vitamine C',d:'Le matin',p:20.99},
+ beauty:{n:'Beauty cheveux & ongles',d:'Au quotidien',p:31.99}
+};
+const fmt=v=>v.toFixed(2).replace('.',',')+' €';
+const $=id=>document.getElementById(id);
+
+// ===== Panier (même logique que l'accueil) =====
+const cc=$('cartCount'),cartEl=$('cart'),cartState={},FREE=60;
+let tt;function toast(m){$('toastTxt').textContent=m;$('toast').classList.add('show');clearTimeout(tt);tt=setTimeout(()=>$('toast').classList.remove('show'),2200)}
+function flyFrom(img){if(!img)return;const r=img.getBoundingClientRect(),t=$('cartBtn').getBoundingClientRect();const f=document.createElement('img');f.src=img.src;f.className='fly';f.style.left=(r.left+r.width/2-32)+'px';f.style.top=(r.top+r.height/2-32)+'px';document.body.appendChild(f);requestAnimationFrame(()=>{f.style.transform='translate('+(t.left+t.width/2-r.left-r.width/2)+'px,'+(t.top+t.height/2-r.top-r.height/2)+'px) scale(.25)';f.style.opacity='.6'});setTimeout(()=>f.remove(),800)}
+function cartTotal(){return Object.keys(cartState).reduce((s,i)=>s+cartState[i]*P[i].p,0)}
+function addToCart(ids,img,label,q){ids.forEach(id=>cartState[id]=(cartState[id]||0)+(q||1));flyFrom(img);setTimeout(()=>{renderCart();cc.classList.remove('bump');void cc.offsetWidth;cc.classList.add('bump');toast(label||'Ajouté au panier')},img?650:0)}
+function renderCart(){
+  const ids=Object.keys(cartState).filter(i=>cartState[i]>0),count=ids.reduce((s,i)=>s+cartState[i],0),total=cartTotal(),left=FREE-total;
+  cc.textContent=count;$('cartTotal').textContent=fmt(total);
+  $('ship').innerHTML=(left>0?'Plus que <b>'+fmt(left)+'</b> pour la livraison offerte':'🎉 <b>Livraison offerte</b> débloquée !')+'<div class="track"><i style="width:'+Math.min(100,total/FREE*100)+'%"></i></div>';
+  $('cartItems').innerHTML=ids.length?ids.map(i=>'<div class="ci"><img src="img/'+i+'.webp" alt=""><div><b>'+P[i].n+'</b><div class="qty"><button aria-label="Retirer un" data-q="-1" data-i="'+i+'">−</button><span>'+cartState[i]+'</span><button aria-label="Ajouter un" data-q="1" data-i="'+i+'">+</button></div></div><strong>'+fmt(P[i].p*cartState[i])+'</strong></div>').join(''):'<p class="empty">Ton panier est vide.</p>';
+  const cand=Object.keys(P).filter(i=>!cartState[i]);const up=cand.find(i=>left>0&&P[i].p>=left)||cand[0];
+  $('upsell').innerHTML=up&&ids.length?'<div class="upsell"><img src="img/'+up+'.webp" alt=""><div><b>'+P[up].n+'</b><br><small>'+fmt(P[up].p)+(left>0&&P[up].p>=left?' · débloque la livraison offerte':'')+'</small></div><button data-up="'+up+'">Ajouter</button></div>':'';
+  updateMiniShip();
+}
+$('cartItems').addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(!b)return;cartState[b.dataset.i]=Math.max(0,cartState[b.dataset.i]+ +b.dataset.q);renderCart()});
+$('upsell').addEventListener('click',e=>{const b=e.target.closest('[data-up]');if(b){cartState[b.dataset.up]=1;renderCart();toast('Ajouté au panier')}});
+const openCart=()=>{renderCart();cartEl.classList.add('open');cartEl.setAttribute('aria-hidden','false')};
+const closeCart=()=>{cartEl.classList.remove('open');cartEl.setAttribute('aria-hidden','true')};
+$('cartBtn').addEventListener('click',openCart);
+cartEl.querySelectorAll('[data-close-cart]').forEach(b=>b.addEventListener('click',closeCart));
+$('checkout').addEventListener('click',e=>{e.currentTarget.textContent='Redirection vers le paiement…'});
+
+// ===== Galerie =====
+const thumbs=document.querySelectorAll('.thumbs button');
+thumbs.forEach(b=>b.addEventListener('click',()=>{
+  thumbs.forEach(x=>x.setAttribute('aria-pressed',x===b));
+  const nut='nut' in b.dataset;$('nutPanel').classList.toggle('on',nut);
+  if(!nut){const m=$('mainImg');m.style.opacity=0;setTimeout(()=>{m.src=b.dataset.src;m.style.opacity=1},200)}
+}));
+
+// ===== Achat : mode + quantité =====
+let qty=1;
+const unit=()=>document.querySelector('input[name=mode]:checked').value==='sub'?40.49:44.99;
+function updPrice(){const v=fmt(unit()*qty);$('qVal').textContent=qty;$('buyPrice').textContent=v;$('stickyPrice').textContent=v}
+document.querySelectorAll('input[name=mode]').forEach(r=>r.addEventListener('change',updPrice));
+$('qMinus').addEventListener('click',()=>{qty=Math.max(1,qty-1);updPrice()});
+$('qPlus').addEventListener('click',()=>{qty++;updPrice()});
+const buy=()=>{const sub=unit()<44.99;addToCart(['creatine'],$('mainImg'),'Créatine ajoutée'+(sub?' (abonnement −10 %)':''),qty)};
+$('buyBtn').addEventListener('click',buy);$('stickyBtn').addEventListener('click',buy);
+function updateMiniShip(){const t=cartTotal(),c=t>0?t:unit()*qty,left=FREE-c;$('miniShip').innerHTML=(left>0?(t>0?'Plus que ':'Ajoute encore ')+'<b>'+fmt(left)+'</b> pour la livraison offerte':'🎉 Livraison offerte sur cette commande')+'<div class="track"><i style="width:'+Math.min(100,c/FREE*100)+'%"></i></div>'}
+
+// ===== Souvent achetés ensemble =====
+const fbtBoxes=document.querySelectorAll('.fbt-list input');
+function updFbt(){let t=0;fbtBoxes.forEach(b=>{document.querySelector('[data-fbt="'+b.value+'"]').classList.toggle('off',!b.checked);if(b.checked)t+=P[b.value].p});$('fbtTotal').textContent=fmt(t)}
+fbtBoxes.forEach(b=>b.addEventListener('change',updFbt));
+$('fbtAdd').addEventListener('click',()=>{const ids=[...fbtBoxes].filter(b=>b.checked).map(b=>b.value);if(!ids.length)return;addToCart(ids,null,'Sélection ajoutée au panier');setTimeout(openCart,300)});
+
+// ===== Carrousel =====
+$('rail').innerHTML=Object.keys(P).filter(i=>i!=='creatine').map(i=>'<article class="card"><div class="media"><img src="img/'+i+'.webp" alt="'+P[i].n+'" loading="lazy"></div><h3>'+P[i].n+'</h3><p class="claim">'+P[i].d+'</p><div class="foot"><span class="price">'+fmt(P[i].p)+'</span><button class="add" data-id="'+i+'">Ajouter</button></div></article>').join('');
+$('rail').addEventListener('click',e=>{const b=e.target.closest('.add');if(!b)return;addToCart([b.dataset.id],b.closest('.card').querySelector('img'),P[b.dataset.id].n+' ajouté au panier')});
+const step=()=>$('rail').clientWidth*.5;
+$('railPrev').addEventListener('click',()=>$('rail').scrollBy({left:-step(),behavior:'smooth'}));
+$('railNext').addEventListener('click',()=>$('rail').scrollBy({left:step(),behavior:'smooth'}));
+
+// ===== Menu, méga-menu, tiroir mobile =====
+const megaBtn=$('megaBtn'),mega=$('mega');
+const openMega=()=>{mega.classList.add('open');megaBtn.setAttribute('aria-expanded','true')};
+const closeMega=()=>{mega.classList.remove('open');megaBtn.setAttribute('aria-expanded','false')};
+megaBtn.addEventListener('click',()=>mega.classList.contains('open')?closeMega():openMega());
+megaBtn.addEventListener('mouseenter',openMega);
+document.querySelector('header').addEventListener('mouseleave',closeMega);
+const drawer=$('drawer'),burger=$('burger');
+const closeDrawer=()=>{drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');burger.setAttribute('aria-expanded','false')};
+burger.addEventListener('click',()=>{drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');burger.setAttribute('aria-expanded','true')});
+drawer.querySelectorAll('[data-close-drawer], a').forEach(el=>el.addEventListener('click',closeDrawer));
+
+// ===== Scroll : barre collante, progression, retour en haut =====
+const prog=$('progress'),totop=$('totop'),ring=$('ring'),sticky=$('stickyBuy');
+addEventListener('scroll',()=>{
+  const max=document.documentElement.scrollHeight-innerHeight,p=max>0?scrollY/max:0;
+  prog.style.transform='scaleX('+p+')';ring.style.strokeDashoffset=163.4*(1-p);
+  totop.classList.toggle('show',scrollY>600);
+  const show=$('buyBtn').getBoundingClientRect().bottom<0;sticky.classList.toggle('show',show);document.body.classList.toggle('has-sticky',show);
+},{passive:true});
+totop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCart();closeDrawer();closeMega()}});
+
+// ===== Annonce rotative + apparitions =====
+const anns=document.querySelectorAll('.announce span');let ai=0;
+setInterval(()=>{anns[ai].classList.remove('on');ai=(ai+1)%anns.length;anns[ai].classList.add('on')},3500);
+const revealEls=document.querySelectorAll('.fbt,.rail-head,.title-c,.review');
+revealEls.forEach(el=>el.classList.add('reveal'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+revealEls.forEach(el=>io.observe(el));
+
+// ===== Couleurs (même choix que l'accueil) =====
+const PAL={foret:['#1F5132','#E3ECE2','#173D26','#FFFFFF'],noir:['#141414','#F6F1E4','#4A3A12','#E8C877'],rouge:['#C8102E','#FBE6E8','#6B0716','#FFFFFF']};
+const sw=document.querySelectorAll('.swatches button');
+function setPal(k){const [c,l,d,o]=PAL[k],r=document.documentElement.style;r.setProperty('--green',c);r.setProperty('--green-l',l);r.setProperty('--deep',d);r.setProperty('--on',o);sw.forEach(b=>b.setAttribute('aria-pressed',b.dataset.pal===k));try{localStorage.setItem('justath-pal2',k)}catch(e){}}
+sw.forEach(b=>b.addEventListener('click',()=>setPal(b.dataset.pal)));
+try{const s=localStorage.getItem('justath-pal2');if(s&&PAL[s])setPal(s)}catch(e){}
+
+renderCart();updPrice();
+</script>
+</body>
+</html>

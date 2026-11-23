@@ -17,5 +17,10 @@ DA inspirée de miumlab.com (clair, aplat de couleur, logo centré, DM Sans + DM
 - Logo (logo texte provisoire), e-mail de contact (placeholder dans la réassurance),
   % de remise packs / abonnement, vidéos UGC.
 
+## Pages
+- `produit-creatine.html` : fiche produit créatine (galerie + valeurs nutritionnelles, achat unique / abonnement −10 % [taux à valider],
+  quantité, mini barre livraison offerte, accordéons, souvent achetés ensemble, carrousel, barre d'achat collante).
+- Accueil : animation au scroll du pot de créatine (SVG). Vidéo Higgsfield prévue (Kling 3.0, 8,75 crédits) quand le compte sera rechargé.
+
 ## Idées suivantes
-- Fiche produit (créatine), option abonnement, recherche instantanée, section « Vu sur TikTok ».
+- Recherche instantanée, section « Vu sur TikTok », autres fiches produits.
