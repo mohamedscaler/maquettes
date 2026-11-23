@@ -336,6 +336,36 @@ img.lz.ok{opacity:1}
   .reveal{opacity:1;transform:none}
 }
 
+/* ===== Scroll story : le pot qui s'ouvre ===== */
+.scrolly{height:280vh;background:var(--green);color:var(--on);position:relative}
+.scrolly .stage{position:sticky;top:64px;height:calc(100vh - 64px);min-height:560px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;align-items:center;max-width:var(--max);margin:0 auto;padding:0 40px;gap:40px}
+.scrolly .glow{position:absolute;left:50%;top:50%;width:70vmin;height:70vmin;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 65%);transform:translate(-10%,-50%) scale(var(--gs,.6));pointer-events:none}
+.steps{position:relative;height:260px}
+.step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:14px;opacity:0;transform:translateY(30px);transition:opacity .5s ease,transform .5s ease}
+.step.on{opacity:1;transform:none}
+.step .k{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.08em;opacity:.8}
+.step h2{font-size:clamp(40px,5.4vw,84px);font-weight:800;letter-spacing:-.03em;line-height:.95}
+.step p{font-size:19px;max-width:440px;margin:0;opacity:.9}
+.dots{display:flex;gap:8px;margin-top:24px}
+.dots i{width:28px;height:4px;border-radius:2px;background:currentColor;opacity:.25;transition:opacity .3s,width .3s}
+.dots i.on{opacity:1;width:48px}
+.jar-wrap{position:relative;height:100%;display:grid;place-items:center}
+.jar{width:min(360px,70%);overflow:visible;filter:drop-shadow(0 40px 50px rgba(0,0,0,.35));transform:translateY(var(--jy,0px)) rotate(var(--jr,0deg))}
+#lid{transform-box:fill-box;transform-origin:92% 100%}
+.particles{position:absolute;inset:0;pointer-events:none}
+.particles span{position:absolute;left:50%;top:50%;border-radius:50%;background:#fff;opacity:0;will-change:transform,opacity}
+.particles span.cap{border-radius:999px;background:linear-gradient(90deg,#fff 50%,var(--on) 50%)}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:8px;opacity:var(--ho,1)}
+.scroll-hint i{width:2px;height:28px;background:currentColor;animation:hint 1.6s ease-in-out infinite;transform-origin:top}
+@keyframes hint{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:900px){
+  .scrolly .stage{grid-template-columns:1fr;grid-template-rows:auto 1fr;padding:24px 20px;gap:0}
+  .steps{height:200px}
+  .step h2{font-size:40px}
+  .step p{font-size:16px}
+  .jar{width:min(240px,60%)}
+}
+
 /* ===== Responsive ===== */
 @media (max-width:1100px){
   .nav-l > a,.nav-l .has-mega,.nav-r > a{display:none}
@@ -461,6 +491,52 @@ img.lz.ok{opacity:1}
     </div>
   </div>
 </div>
+
+<!-- ===== SCROLL STORY : le pot s'ouvre au scroll ===== -->
+<section class="scrolly" id="story" style="padding:0" aria-label="Découvre la créatine JustAth">
+  <div class="stage">
+    <div class="glow" aria-hidden="true"></div>
+    <div>
+      <div class="steps">
+        <div class="step on"><span class="k">Le best-seller</span><h2>Créatine monohydrate</h2><p>Le complément le plus étudié pour les sports de force. Ouvre le pot.</p></div>
+        <div class="step"><span class="k">Dosage</span><h2>3 g par jour</h2><p>Un tiers de cuillère doseuse, dans de l'eau, un jus ou ton shake. C'est tout.</p></div>
+        <div class="step"><span class="k">Formule</span><h2>Sans sucre, sans arôme</h2><p>Une seule ligne d'ingrédients : créatine monohydrate. Sans OGM.</p></div>
+        <div class="step"><span class="k">500 g · 166 doses</span><h2>44,99 €</h2><p>Plus de 5 mois de routine dans un seul pot.</p><p><button class="btn btn-white" data-story-add style="margin-top:6px">Ajouter au panier</button></p></div>
+      </div>
+      <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="jar-wrap">
+      <div class="particles" id="particles" aria-hidden="true"></div>
+      <svg class="jar" id="jar" viewBox="0 0 300 400" role="img" aria-label="Pot de créatine JustAth qui s'ouvre">
+        <defs>
+          <linearGradient id="gBody" x1="0" x2="1"><stop offset="0" stop-color="#D9D9D4"/><stop offset=".18" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#F7F7F4"/><stop offset="1" stop-color="#CFCFCA"/></linearGradient>
+          <linearGradient id="gLid" x1="0" x2="1"><stop offset="0" stop-color="#E2E2DD"/><stop offset=".25" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D3D3CE"/></linearGradient>
+          <radialGradient id="gPowder" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E9E9E4"/></radialGradient>
+        </defs>
+        <!-- corps du pot -->
+        <rect x="36" y="96" width="228" height="290" rx="26" fill="url(#gBody)"/>
+        <rect x="50" y="76" width="200" height="30" rx="6" fill="#ECECE8"/>
+        <ellipse cx="150" cy="80" rx="96" ry="10" fill="url(#gPowder)"/>
+        <!-- étiquette -->
+        <rect x="36" y="150" width="228" height="196" fill="#FFFFFF" opacity=".55"/>
+        <text x="150" y="196" text-anchor="middle" font-family="DM Sans" font-weight="800" font-size="20" fill="#1D1111" letter-spacing="-.5">just<tspan style="fill:var(--green)">ath</tspan></text>
+        <text x="150" y="250" text-anchor="middle" font-family="DM Sans" font-weight="800" font-size="34" style="fill:var(--green)" letter-spacing="-1">CRÉATINE</text>
+        <text x="150" y="278" text-anchor="middle" font-family="DM Sans" font-weight="700" font-size="20" fill="#1D1111" letter-spacing="-.4">MONOHYDRATE</text>
+        <text x="150" y="304" text-anchor="middle" font-family="DM Mono" font-size="10.5" fill="#5E5C58">500 G · 166 DOSES</text>
+        <rect x="36" y="326" width="228" height="12" style="fill:var(--green)"/>
+        <!-- couvercle -->
+        <g id="lid">
+          <rect x="30" y="26" width="240" height="66" rx="14" fill="url(#gLid)"/>
+          <g stroke="#C9C9C4" stroke-width="2">
+            <line x1="56" y1="36" x2="56" y2="84"/><line x1="76" y1="36" x2="76" y2="84"/><line x1="96" y1="36" x2="96" y2="84"/><line x1="116" y1="36" x2="116" y2="84"/><line x1="136" y1="36" x2="136" y2="84"/><line x1="156" y1="36" x2="156" y2="84"/><line x1="176" y1="36" x2="176" y2="84"/><line x1="196" y1="36" x2="196" y2="84"/><line x1="216" y1="36" x2="216" y2="84"/><line x1="236" y1="36" x2="236" y2="84"/>
+          </g>
+          <rect x="30" y="26" width="240" height="10" rx="5" fill="#FFFFFF"/>
+        </g>
+      </svg>
+    </div>
+    <div class="scroll-hint" aria-hidden="true"><i></i>Scrolle</div>
+  </div>
+</section>
 
 <!-- ===== RÉASSURANCE ===== -->
 <div class="reassure">
@@ -862,6 +938,52 @@ function setPal(k){
 }
 sw.forEach(b=>b.addEventListener('click',()=>setPal(b.dataset.pal)));
 try{const s=localStorage.getItem('justath-pal2');if(s&&PAL[s])setPal(s)}catch(e){}
+
+// ===== Scroll story : ouverture du pot =====
+(function(){
+  const sec=document.getElementById('story');if(!sec)return;
+  const lid=document.getElementById('lid'),jar=document.getElementById('jar'),stage=sec.querySelector('.stage');
+  const steps=sec.querySelectorAll('.step'),dots=sec.querySelectorAll('.dots i'),box=document.getElementById('particles');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // particules : poudre + quelques gélules
+  const parts=[...Array(34)].map((_,i)=>{
+    const s=document.createElement('span');const cap=i%6===0;
+    const size=cap?0:(3+Math.random()*7);
+    if(cap){s.className='cap';s.style.width='22px';s.style.height='9px'}else{s.style.width=s.style.height=size+'px'}
+    box.appendChild(s);
+    const a=(-90+(Math.random()*120-60))*Math.PI/180,d=140+Math.random()*240;
+    return {s,x:Math.cos(a)*d,y:Math.sin(a)*d,r:Math.random()*540-270,delay:Math.random()*.35};
+  });
+  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+  const ease=t=>1-Math.pow(1-t,3);
+  let cur=-1;
+  function update(){
+    const r=sec.getBoundingClientRect(),total=sec.offsetHeight-stage.offsetHeight;
+    let p=reduce?1:clamp(-r.top/total);
+    // couvercle : se dévisse (0→0.3) puis s'envole (0.3→0.6)
+    const unscrew=ease(clamp(p/.3)),fly=ease(clamp((p-.25)/.35));
+    lid.style.transform='translate('+(fly*60)+'px,'+(-unscrew*18-fly*150)+'px) rotate('+(unscrew*-6+fly*28)+'deg)';
+    // pot : léger flottement et inclinaison
+    jar.style.setProperty('--jy',(-p*20)+'px');jar.style.setProperty('--jr',(Math.sin(p*Math.PI)*-4)+'deg');
+    stage.querySelector('.glow').style.setProperty('--gs',(.6+p*.7));
+    // poudre qui jaillit (0.3→1)
+    const jr=jar.getBoundingClientRect(),br=box.getBoundingClientRect();
+    const ox=jr.left-br.left+jr.width/2,oy=jr.top-br.top+jr.height*.2;
+    parts.forEach(o=>{
+      const t=ease(clamp((p-.32-o.delay*.5)/.5));
+      o.s.style.left=ox+'px';o.s.style.top=oy+'px';
+      o.s.style.opacity=t>0?(t<.85?1:(1-t)/.15*1):0;
+      o.s.style.transform='translate('+(o.x*t)+'px,'+(o.y*t)+'px) rotate('+(o.r*t)+'deg)';
+    });
+    // étapes de texte
+    const i=Math.min(steps.length-1,Math.floor(p*steps.length*.999));
+    if(i!==cur){cur=i;steps.forEach((s,k)=>s.classList.toggle('on',k===i));dots.forEach((d,k)=>d.classList.toggle('on',k===i))}
+    stage.querySelector('.scroll-hint').style.setProperty('--ho',1-clamp(p*5));
+  }
+  addEventListener('scroll',()=>requestAnimationFrame(update),{passive:true});
+  addEventListener('resize',update);update();
+  sec.querySelector('[data-story-add]').addEventListener('click',()=>{addToCart(['creatine'],null,'Créatine ajoutée au panier');setTimeout(openCart,300)});
+})();
 
 // Newsletter
 document.getElementById('newsForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('newsOk').hidden=false});
