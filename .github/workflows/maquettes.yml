@@ -5,7 +5,7 @@ name: Maquettes
 on:
   push:
     branches: [main]
-    paths: ["prospects/**", "modele/**", "outils/**", ".github/workflows/maquettes.yml"]
+    paths: ["prospects/**", "modele/**", "outils/**", "justath/**", ".github/workflows/maquettes.yml"]
   workflow_dispatch:
 
 permissions:
