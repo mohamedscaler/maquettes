@@ -10,10 +10,10 @@
 <style>
 /* ===== Tokens (codes Mium Lab, couleurs JustAth) ===== */
 :root{
-  --green:#1F5132;      /* aplat signature (équivalent du bleu Mium) */
-  --green-l:#E3ECE2;    /* fond doux */
-  --deep:#173D26;       /* texte foncé sur fond doux */
-  --on:#FFFFFF;         /* texte posé sur l'aplat */
+  --green:#3BA344;      /* aplat signature (équivalent du bleu Mium) */
+  --green-l:#EAF6EC;    /* fond doux */
+  --deep:#14401E;       /* texte foncé sur fond doux */
+  --on:#0B2410;         /* texte posé sur l'aplat */
   --yellow:#FFE927;     /* CTA promo */
   --ink:#1D1111;        /* texte principal */
   --muted:#5E5C58;
@@ -454,7 +454,7 @@ body:has(.cart.open) .sticky-buy,body:has(.drawer.open) .sticky-buy{display:none
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="mock-badge"><span>Maquette · Charika Web</span>
   <div class="swatches" role="group" aria-label="Changer la couleur du site">
-    <button style="--c:#1F5132" aria-label="Vert forêt" aria-pressed="true" data-pal="foret"></button>
+    <button style="--c:#3BA344" aria-label="Vert JustAth" aria-pressed="true" data-pal="foret"></button>
     <button style="--c:linear-gradient(135deg,#141414 50%,#E8C877 50%)" aria-label="Noir et or" aria-pressed="false" data-pal="noir"></button>
     <button style="--c:#C8102E" aria-label="Rouge performance" aria-pressed="false" data-pal="rouge"></button>
   </div>
@@ -984,7 +984,7 @@ renderCart();
 
 // ===== Variantes de couleur =====
 const PAL={
- foret:['#1F5132','#E3ECE2','#173D26','#FFFFFF'],
+ foret:['#3BA344','#EAF6EC','#14401E','#0B2410'],
  noir:['#141414','#F6F1E4','#4A3A12','#E8C877'],
  rouge:['#C8102E','#FBE6E8','#6B0716','#FFFFFF']
 };
@@ -993,10 +993,10 @@ function setPal(k){
   const [c,l,d,o]=PAL[k],r=document.documentElement.style;
   r.setProperty('--green',c);r.setProperty('--green-l',l);r.setProperty('--deep',d);r.setProperty('--on',o);
   sw.forEach(b=>b.setAttribute('aria-pressed',b.dataset.pal===k));
-  try{localStorage.setItem('justath-pal2',k)}catch(e){}
+  try{localStorage.setItem('justath-pal3',k)}catch(e){}
 }
 sw.forEach(b=>b.addEventListener('click',()=>setPal(b.dataset.pal)));
-try{const s=localStorage.getItem('justath-pal2');if(s&&PAL[s])setPal(s)}catch(e){}
+try{const s=localStorage.getItem('justath-pal3');if(s&&PAL[s])setPal(s)}catch(e){}
 
 // ===== Scroll story : ouverture du pot =====
 (function(){
