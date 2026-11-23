@@ -8,7 +8,7 @@ DA inspirée de miumlab.com (clair, aplat de couleur, logo centré, DM Sans + DM
 - Fonctions : méga-menu + menu mobile, onglets catégories + fil d'Ariane, quiz diagnostic 3 questions → routine,
   panier latéral (quantités, barre livraison offerte 60 €, suggestion), animation vers le panier, toast,
   loader, apparitions au scroll, retour en haut, barre de lecture, bandeau rotatif,
-  sélecteur de couleurs (vert, bleu, lime, orange, violet) dans le badge « Maquette · Charika Web ».
+  sélecteur de couleurs (vert JustAth #3BA344 par défaut, noir & or, rouge perf) dans le badge « Maquette · Charika Web ».
 
 ## Règles
 - Allégations santé : uniquement des allégations autorisées UE. Avis clients : emplacement vide, rien d'inventé.
@@ -18,9 +18,12 @@ DA inspirée de miumlab.com (clair, aplat de couleur, logo centré, DM Sans + DM
   % de remise packs / abonnement, vidéos UGC.
 
 ## Pages
-- `produit-creatine.html` : fiche produit créatine (galerie + valeurs nutritionnelles, achat unique / abonnement −10 % [taux à valider],
+- `produit-<id>.html` (7 fiches : creatine, preworkout, electrolytes, magzinc, ashwa, vitc, beauty), textes repris de la boutique Shopify. Fiche type (galerie + valeurs nutritionnelles, achat unique / abonnement −10 % [taux à valider],
   quantité, mini barre livraison offerte, accordéons, souvent achetés ensemble, carrousel, barre d'achat collante).
 - Accueil : animation au scroll du pot de créatine (SVG). Vidéo Higgsfield prévue (Kling 3.0, 8,75 crédits) quand le compte sera rechargé.
 
 ## Idées suivantes
 - Recherche instantanée, section « Vu sur TikTok », autres fiches produits.
+
+## Responsive
+- Passe mobile faite et vérifiée en 375 px (accueil + fiche produit). Tablette : correct mais pas peaufiné.
